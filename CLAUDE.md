@@ -124,4 +124,9 @@ three agents in plain text.
 - The small labels in the example threads (9–11px: "Example" caption, times,
   sender names, "PDF") and the 10px step numbers in "A day with them" are
   deliberate. Don't raise them to 12px.
+- Purple has two jobs: actions (buttons, links) and emphasis in display type
+  and markers — the lilac highlighter behind headline keywords (`<Mark>`),
+  section eyebrows, step numbers and bullets. Never color body text purple.
+  Alternate sections use the lilac `--surface`; the final CTA is the one dark
+  purple band.
 - Run `npm run lint` and `npm run build` before each commit.

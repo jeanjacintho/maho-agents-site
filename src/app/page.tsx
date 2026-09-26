@@ -39,7 +39,7 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p {...reveal(0)} className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{children}</p>;
+  return <p {...reveal(0)} className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{children}</p>;
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -50,13 +50,22 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Lilac marker behind a headline's key words; it sweeps in with the heading.
+function Mark({ children }: { children: React.ReactNode }) {
+  return <mark className="hl">{children}</mark>;
+}
+
 // Outlined, so the hero keeps the page's only filled action.
 const outlineButton =
   "group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
 
-function IndexButton({ a, children }: { a: Agent; children: React.ReactNode }) {
+// White outline for the dark purple band.
+const outlineButtonOnDark =
+  "group inline-flex items-center justify-center gap-2 rounded-full border border-white/50 px-5 py-2.5 text-sm font-medium text-white transition-[background-color,color,scale] duration-150 ease-out hover:bg-white hover:text-[#24166b] active:scale-[0.96]";
+
+function IndexButton({ a, onDark = false, children }: { a: Agent; onDark?: boolean; children: React.ReactNode }) {
   return (
-    <a href={a.index} className={outlineButton}>
+    <a href={a.index} className={onDark ? outlineButtonOnDark : outlineButton}>
       {children}
       <Arrow />
     </a>
@@ -113,12 +122,12 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="border-b border-line">
+    <section id="top" className="overflow-x-clip border-b border-line">
       <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
           <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-            Agents that live where you already are.
+            Agents that live where you <Mark>already are</Mark>.
           </h1>
           <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             Text, email, group chat. They never make up what they can’t check, and they only act
@@ -246,7 +255,9 @@ function Day() {
     <section id="day" className="border-b border-line py-20 sm:py-28">
       <Container>
         <Eyebrow>A day with them</Eyebrow>
-        <SectionTitle>Not a dashboard. A text thread you already check.</SectionTitle>
+        <SectionTitle>
+          Not a dashboard. A text thread <Mark>you already check</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           The conversations below are illustrative examples — made-up names, not screenshots of real people.
         </p>
@@ -259,7 +270,7 @@ function Day() {
             >
               <div {...reveal(0)} className={i % 2 ? "lg:order-2" : ""}>
                 <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                  <span className="grid size-6 place-items-center rounded-full border border-line text-[10px]">
+                  <span className="grid size-6 place-items-center rounded-full border border-accent/40 text-[10px] text-accent">
                     {i + 1}
                   </span>
                   {m.when}
@@ -367,7 +378,9 @@ function Ecosystem() {
     <section id="ecosystem" className="border-b border-line bg-surface py-20 sm:py-28">
       <Container>
         <Eyebrow>The ecosystem</Eyebrow>
-        <SectionTitle>A partner reaches out on X. By Wednesday, you’re ready.</SectionTitle>
+        <SectionTitle>
+          A partner reaches out on X. By Wednesday, <Mark>you’re ready</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl leading-relaxed text-muted">
           AHA spots the post in your daily digest. You ask Meetly to reach out, and it books the call. The next
           morning, The Founder Times puts the meeting first on your advisor desk — each agent in its own lane,
@@ -380,7 +393,7 @@ function Ecosystem() {
           {ecosystem.map((step, i) => (
             <li key={step.label} className="flex flex-col">
               <p className="mb-3 flex items-center gap-2.5">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-foreground text-[10px] font-medium text-background">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-accent text-[10px] font-medium text-accent-ink">
                   {i + 1}
                 </span>
                 <span className="leading-tight">
@@ -431,11 +444,13 @@ function HowItWorks() {
     <section id="how" className="border-b border-line bg-surface py-20 sm:py-28">
       <Container>
         <Eyebrow>How it works</Eyebrow>
-        <SectionTitle>One pipeline under all three.</SectionTitle>
+        <SectionTitle>
+          One pipeline <Mark>under all three</Mark>.
+        </SectionTitle>
         <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title} {...reveal(i)} className="flex flex-col bg-surface p-6 sm:p-8">
-              <span className="font-display text-6xl leading-none">{i + 1}</span>
+              <span className="font-display text-6xl leading-none text-accent">{i + 1}</span>
               <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
             </li>
@@ -483,7 +498,9 @@ function Limits() {
     <section id="limits" className="border-b border-line py-20 sm:py-28">
       <Container>
         <Eyebrow>Transparency and limits</Eyebrow>
-        <SectionTitle>The rules, in one place.</SectionTitle>
+        <SectionTitle>
+          The rules, <Mark>in one place</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           Meetly books meetings without waiting for you. That’s the point — so the promise isn’t
           &ldquo;it never acts alone&rdquo;. It acts only inside your limits, and tells you after.
@@ -495,7 +512,7 @@ function Limits() {
               <ul className="mt-5 flex flex-col gap-4">
                 {group.items.map((item, i) => (
                   <li key={i} className="flex gap-3 leading-relaxed">
-                    <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-muted" />
+                    <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -523,7 +540,9 @@ function Proof() {
     <section id="proof" className="border-b border-line bg-surface py-20 sm:py-28">
       <Container>
         <Eyebrow>Proof</Eyebrow>
-        <SectionTitle>Real output, one per agent.</SectionTitle>
+        <SectionTitle>
+          Real output, <Mark>one per agent</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           Anonymized examples from real use will go here. Until then, this space stays empty on purpose.
         </p>
@@ -578,7 +597,9 @@ function RunsOnPlow() {
     <section id="base" className="border-b border-line py-20 sm:py-28">
       <Container>
         <Eyebrow>Runs on Plow</Eyebrow>
-        <SectionTitle>Built on a base you can read about.</SectionTitle>
+        <SectionTitle>
+          Built on a base <Mark>you can read about</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           All three are{" "}
           <a href={links.openclaw} className="underline underline-offset-4">
@@ -614,7 +635,9 @@ function TryThem() {
     <section id="try" className="border-b border-line bg-surface py-20 sm:py-28">
       <Container>
         <Eyebrow>Try them</Eyebrow>
-        <SectionTitle>Each one has a page on the Agent Index.</SectionTitle>
+        <SectionTitle>
+          Each one has a page on the <Mark>Agent Index</Mark>.
+        </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
           {agents.map((a, i) => (
@@ -639,22 +662,28 @@ function TryThem() {
 
 function FinalCta() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="band relative isolate overflow-hidden bg-[#24166b] py-24 text-white sm:py-32">
+      <span
+        aria-hidden
+        className="absolute inset-x-0 -top-40 -z-10 mx-auto h-96 max-w-3xl rounded-full bg-accent/60 blur-3xl"
+      />
       <Container className="flex flex-col items-center text-center">
         <h2 {...reveal(0)} className="max-w-3xl font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-          Your paper, your calendar, your reputation — <em>on a text thread.</em>
+          Your paper, your calendar, your reputation — <Mark><em>on a text thread.</em></Mark>
         </h2>
         <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
           {agents.map((a) => (
             <li key={a.id}>
-              <IndexButton a={a}>{a.name}</IndexButton>
+              <IndexButton a={a} onDark>
+                {a.name}
+              </IndexButton>
             </li>
           ))}
         </ul>
         <a
           {...reveal(2)}
           href={links.github}
-          className="mt-6 text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+          className="mt-6 text-sm font-medium text-white/85 underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white"
         >
           View on GitHub
         </a>

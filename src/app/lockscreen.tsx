@@ -13,7 +13,11 @@ const notifications: { a: Agent; time: string; text: string }[] = [
 
 export function LockScreen() {
   return (
-    <figure className="imsg mx-auto w-full max-w-[300px]">
+    <figure className="imsg relative isolate mx-auto w-full max-w-[300px]">
+      <span
+        aria-hidden
+        className="absolute -inset-x-16 top-10 bottom-0 -z-10 rounded-full bg-[radial-gradient(closest-side,rgb(106_76_240/0.28),transparent)] blur-2xl"
+      />
       <figcaption className="mb-2 pl-4 font-mono text-[10px] uppercase tracking-wider text-muted">
         Example<span className="sr-only">: a lock screen with a day of notifications from the three agents</span>
       </figcaption>

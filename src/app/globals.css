@@ -3,9 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #121216;
-  --surface: #f7f7fa;
-  --sunk: #efeff4;
-  --line: #e4e4eb;
+  /* Lilac tints of the accent, so alternate sections carry the brand. */
+  --surface: #f6f3ff;
+  --sunk: #eee9fc;
+  --line: #e4def5;
+  /* Highlighter behind headline keywords. */
+  --hl: #d9cdff;
   --muted: #5e5e6a;
   --accent: #6a4cf0;
   --accent-ink: #ffffff;
@@ -63,6 +66,28 @@ p {
 
 section[id] {
   scroll-margin-top: 5rem;
+}
+
+/* Lilac highlighter behind a headline's key words. */
+.hl {
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(var(--hl), var(--hl));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 42%;
+  padding-inline: 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* On the dark band the marker is a brighter purple under white text. */
+.band {
+  --hl: rgb(139 114 255 / 0.75);
+}
+
+.band :focus-visible {
+  outline-color: #fff;
 }
 
 /* Example threads drawn like iMessage. In the components layer so
@@ -209,6 +234,16 @@ section[id] {
     transition-duration: 700ms;
     transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
     transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  /* The highlighter sweeps in after its heading appears. */
+  html[data-reveal] [data-reveal] .hl {
+    background-size: 0% 42%;
+  }
+
+  html[data-reveal] [data-reveal][data-shown] .hl {
+    background-size: 100% 42%;
+    transition: background-size 700ms cubic-bezier(0.2, 0, 0, 1) calc(var(--i, 0) * 90ms + 350ms);
   }
 
   /* Example threads: messages arrive in order, with a typing bubble first. */
