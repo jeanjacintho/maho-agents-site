@@ -45,7 +45,7 @@ function IndexButton({ a, label }: { a: Agent; label?: string }) {
   return (
     <a
       href={a.index}
-      className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
+      className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
     >
       {label ?? `${a.name} on the Agent Index`}
       <span aria-hidden>→</span>
@@ -75,7 +75,7 @@ function Nav() {
           </a>
           <a
             href="#try"
-            className="rounded-full border border-foreground px-3.5 py-1.5 font-medium hover:bg-foreground hover:text-background"
+            className="rounded-full bg-accent px-3.5 py-1.5 font-medium text-accent-ink hover:opacity-90"
           >
             Try them
           </a>
@@ -475,7 +475,7 @@ function RunsOnPlow() {
             <li key={b.title}>
               <a
                 href={b.href}
-                className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-foreground sm:p-8"
+                className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-accent sm:p-8"
               >
                 <h3 className="text-lg font-semibold tracking-tight">{b.title}</h3>
                 <p className="mt-2 flex-1 leading-relaxed text-muted">{b.body}</p>
