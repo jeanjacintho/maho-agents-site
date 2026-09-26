@@ -54,11 +54,11 @@ function typed(m: Message) {
 
 // When each message lands, in ms after the thread scrolls into view.
 function arrivals(messages: Message[]) {
-  let t = 500;
+  let t = 250;
   return messages.map((m) => {
-    if (typed(m)) t += 800;
+    if (typed(m)) t += 400;
     const at = t;
-    t += m.kind === "out" ? 700 : 500;
+    t += m.kind === "out" ? 350 : 250;
     return at;
   });
 }

@@ -78,23 +78,23 @@ section[id] {
   }
 
   html[data-reveal] [data-thread][data-shown] .msg {
-    animation: msg-in 400ms cubic-bezier(0.2, 0, 0, 1) var(--at) both;
+    animation: msg-in 250ms cubic-bezier(0.2, 0, 0, 1) var(--at) both;
   }
 
   html[data-reveal] [data-thread][data-shown] .typing {
-    animation: typing 800ms ease-out calc(var(--at) - 800ms) both;
+    animation: typing 400ms ease-out calc(var(--at) - 400ms) both;
   }
 
   html[data-reveal] [data-thread][data-shown] .typing span {
-    animation: typing-dot 600ms ease-in-out calc(var(--at) - 800ms) 2 both;
+    animation: typing-dot 300ms ease-in-out calc(var(--at) - 400ms) 2 both;
   }
 
   html[data-reveal] [data-thread][data-shown] .typing span:nth-child(2) {
-    animation-delay: calc(var(--at) - 650ms);
+    animation-delay: calc(var(--at) - 325ms);
   }
 
   html[data-reveal] [data-thread][data-shown] .typing span:nth-child(3) {
-    animation-delay: calc(var(--at) - 500ms);
+    animation-delay: calc(var(--at) - 250ms);
   }
 }
 
