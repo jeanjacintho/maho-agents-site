@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Epilogue, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { RevealScript } from "./motion";
 import { RevealOnScroll } from "./reveal";
@@ -14,10 +14,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const serif = Instrument_Serif({
-  variable: "--font-serif-display",
+// Display face, as on plow.co/latch's headline.
+const display = Epilogue({
+  variable: "--font-epilogue",
   subsets: ["latin"],
-  weight: "400",
+  weight: "500",
   style: ["normal", "italic"],
 });
 
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${serif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} h-full antialiased`}
     >
       <head>
         <RevealScript />

@@ -42,7 +42,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 {...reveal(1)} className="mt-3 max-w-3xl font-serif text-4xl leading-[1.1] tracking-tight text-balance sm:text-5xl">
+    <h2 {...reveal(1)} className="mt-3 max-w-3xl font-display text-4xl leading-[1.1] text-balance sm:text-5xl">
       {children}
     </h2>
   );
@@ -81,7 +81,7 @@ function Nav() {
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-background/85 backdrop-blur">
       <Container className="flex h-14 items-center gap-6">
-        <a href="#top" className="font-serif text-2xl leading-none tracking-tight">
+        <a href="#top" className="font-display text-2xl leading-none">
           Maho
         </a>
         <nav aria-label="Agents" className="hidden flex-1 items-center gap-5 text-sm text-muted md:flex">
@@ -115,7 +115,7 @@ function Hero() {
       <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
-          <h1 {...reveal(1)} className="mt-5 font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-7xl">
+          <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
             Agents that live where you already are.
           </h1>
           <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -282,7 +282,7 @@ function Day() {
                   <Image src={m.a.image} alt="" width={40} height={40} className="size-10 rounded-full outline-1 -outline-offset-1 outline-black/10" />
                   {m.a.name}
                 </h3>
-                <p className="mt-4 font-serif text-3xl leading-tight text-balance">{m.lead}</p>
+                <p className="mt-4 font-display text-3xl leading-tight text-balance">{m.lead}</p>
                 <p className="mt-4 leading-relaxed text-muted">{m.body}</p>
                 <div className="mt-6">
                   <p className="text-xs font-medium uppercase tracking-wider text-muted">Uses</p>
@@ -342,7 +342,7 @@ function HowItWorks() {
         <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title} {...reveal(i)} className="flex flex-col bg-surface p-6 sm:p-8">
-              <span className="font-serif text-6xl leading-none">{i + 1}</span>
+              <span className="font-display text-6xl leading-none">{i + 1}</span>
               <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
             </li>
@@ -446,7 +446,7 @@ function Proof() {
                 <span className="font-medium">{a.name}</span>
               </div>
               <div>
-                <p className="font-serif text-2xl leading-tight">{what}</p>
+                <p className="font-display text-2xl leading-tight">{what}</p>
                 <p className="mt-2 font-mono text-xs uppercase tracking-wider text-muted">Example coming</p>
               </div>
             </li>
@@ -548,7 +548,7 @@ function FinalCta() {
   return (
     <section className="py-24 sm:py-32">
       <Container className="flex flex-col items-center text-center">
-        <h2 {...reveal(0)} className="max-w-3xl font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-6xl">
+        <h2 {...reveal(0)} className="max-w-3xl font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
           Your paper, your calendar, your reputation — <em>on a text thread.</em>
         </h2>
         <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
@@ -577,7 +577,7 @@ function Footer() {
     <footer className="border-t border-line text-sm">
       <Container className="grid gap-10 py-12 sm:grid-cols-[1fr_2fr]">
         <div>
-          <p className="font-serif text-3xl leading-none">Maho</p>
+          <p className="font-display text-3xl leading-none">Maho</p>
           <p className="mt-3 max-w-xs text-muted">Three agents on one base: Plow + OpenClaw.</p>
           <a href={links.agentIndex} className="mt-4 inline-block underline underline-offset-4">
             Agent Index

@@ -27,7 +27,6 @@
   --color-imsg-sent: var(--imsg-sent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-serif-display);
 }
 
 html {
@@ -53,6 +52,13 @@ p {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* Display type: Epilogue 500 with tight tracking, like plow.co/latch. */
+@utility font-display {
+  font-family: var(--font-epilogue), "DM Sans", system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
 }
 
 section[id] {
