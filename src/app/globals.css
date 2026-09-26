@@ -93,6 +93,24 @@ section[id] {
     line-height: 1.3;
   }
 
+  .imsg-compact {
+    --bubble-max: 88%;
+  }
+
+  /* Stacked cards scroll into view one at a time, so they don't wait on
+     each other. Beats the inline --delay. */
+  @media (width < 80rem) {
+    .imsg-compact {
+      --delay: 0ms !important;
+    }
+  }
+
+  .imsg-compact .imsg-in,
+  .imsg-compact .imsg-out {
+    padding: 6px 11px;
+    font-size: 13.5px;
+  }
+
   .imsg-in {
     background: var(--imsg-gray);
     color: #000;

@@ -73,12 +73,13 @@ linked as the base Maho runs on.
    - Evening — AHA: the daily digest. Hacker News, Agent Index.
    Conversations are illustrative; make them clearly examples, never fake
    screenshots of real people.
-3b. **The ecosystem** — an "Acme HQ" group with Sam (the owner), AHA and The
-   Founder Times: AHA posts the digest, Sam reacts, The Founder Times stays
-   silent in the group and puts it first on the next morning's advisor desk
-   (in Sam's DM); Meetly books the follow-up from the DM. Per the owner, not
-   yet in the READMEs: AHA and The Founder Times can share a group, and what's
-   said there reaches the next edition. Meetly does not join that group.
+3b. **The ecosystem** — one opportunity through all three, as four compact
+   iMessage cards: (1) Tue 18:00 AHA's digest carries Priya (Northwind)'s
+   partnership post on X — AHA reads only the X pages the owner registers;
+   (2) Sam asks Meetly in its DM to reach out; (3) Meetly opens a group with
+   Priya and books Wed 10:00; (4) Wed 07:00 The Founder Times prints the call
+   on the calendar rail and puts "prep for Northwind" first on the advisor
+   desk. Names are illustrative.
 4. **How it works** — numbered pipeline shared by all three:
    1. It listens (chat, email, iMessage, groups, the public web).
    2. It decides what matters (recommendations challenged by critics, not the

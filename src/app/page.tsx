@@ -298,78 +298,108 @@ function Day() {
   );
 }
 
-/* 3b. The ecosystem: AHA and The Founder Times in one group */
+/* 3b. The ecosystem: one opportunity, all three agents */
 
-// TODO(owner): not in the READMEs yet. Per the owner, AHA and The Founder
-// Times can share a group, and what's said there reaches the next edition's
-// advisor desk; The Founder Times stays quiet in the group.
-const ecosystemThread: Message[] = [
-  { kind: "time", text: "Tue 18:00" },
+// Illustrative names (Priya, Northwind, Acme). AHA reads only the X pages the
+// owner registers (site watch); Meetly reaches people in the owner's Contacts.
+const ecosystem: { label: string; when: string; note?: string; a: Agent; people?: number; messages: Message[] }[] = [
   {
-    kind: "in",
-    from: "AHA",
-    text: "Daily digest for Acme — 3 new mentions.\n• A Show HN thread about Acme, 41 comments, most on pricing\n• Two Agent Index comments asking how pricing works",
+    label: "AHA spots it",
+    when: "Tue 18:00",
+    a: aha,
+    note: "From the X pages you point AHA at.",
+    messages: [
+      { kind: "time", text: "Tue 18:00" },
+      {
+        kind: "in",
+        text: "Daily digest for Acme — 4 new mentions.\n\nOn X, Priya Shah (Partnerships, Northwind): “We’d love to build something with @acme. Who should I talk to?”",
+      },
+    ],
   },
-  { kind: "out", text: "pricing is confusing people. let’s make it tomorrow’s priority" },
-  { kind: "note", text: "Wed 07:00 · in Sam’s DM" },
   {
-    kind: "in",
-    from: "The Founder Times",
-    text: "Today’s edition is in the tray. #1 on the advisor’s desk: clarify the pricing page — from AHA’s digest and your note in Acme HQ.",
+    label: "You ask Meetly",
+    when: "Tue 18:05",
+    a: meetly,
+    note: "Meetly reaches people in your Contacts.",
+    messages: [
+      { kind: "time", text: "Tue 18:05" },
+      { kind: "out", text: "reach out to Priya from Northwind and set up a call" },
+    ],
   },
   {
-    kind: "file",
-    from: "The Founder Times",
-    name: "The Founder Times — Wed 30 Sep.pdf",
-    detail: "Letter · advisor’s desk, weather, calendar",
+    label: "Meetly books it",
+    when: "Tue 18:06",
+    a: meetly,
+    people: 2,
+    messages: [
+      {
+        kind: "in",
+        from: "Meetly",
+        text: "Hi Priya — I’m Meetly, Sam’s scheduling assistant. Sam saw your post about Northwind and Acme. Sam is free Wed 30/9 at 10:00, Wed 30/9 at 15:00 or Thu 1/10 at 11:00. Which works?",
+      },
+      { kind: "in", from: "Priya", text: "wed 10 works!" },
+      { kind: "in", from: "Meetly", text: "Booked: Wed 30/9 at 10:00. Invite sent." },
+    ],
   },
-  { kind: "note", text: "Later, Sam asks Meetly for time with Ana" },
-  { kind: "in", from: "Meetly", text: "Booked: Thu 1/10 at 10:00 with Ana — pricing review. Invite sent." },
+  {
+    label: "The paper preps you",
+    when: "Wed 07:00",
+    a: foundertimes,
+    messages: [
+      { kind: "time", text: "Wed 07:00" },
+      { kind: "in", text: "Today’s edition is in the tray." },
+      { kind: "file", name: "The Founder Times — Wed 30 Sep.pdf", detail: "Calendar · 10:00 Northwind call" },
+      {
+        kind: "in",
+        text: "#1 on the advisor’s desk: prep for Northwind — Priya’s post on X and what they build.",
+      },
+    ],
+  },
 ];
+
+// Each card starts typing after the previous one has finished.
+const ecosystemDelays = ecosystem.map((_, i) =>
+  ecosystem.slice(0, i).reduce((ms, step) => ms + 350 + step.messages.length * 550, 0),
+);
 
 function Ecosystem() {
   return (
     <section id="ecosystem" className="border-b border-line bg-surface py-20 sm:py-28">
-      <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <div>
-          <Eyebrow>The ecosystem</Eyebrow>
-          <SectionTitle>AHA hears it. You weigh in. Tomorrow’s paper puts it first.</SectionTitle>
-          <p {...reveal(2)} className="mt-4 max-w-xl leading-relaxed text-muted">
-            Put AHA and The Founder Times in one group. AHA posts what the public said about you, the people in
-            the group react, and The Founder Times listens without a word — then ranks it on the next
-            edition’s advisor desk. Meetly books the follow-up from your DM.
-          </p>
-          <ol {...reveal(3)} className="mt-8 flex flex-col gap-3">
-            {[
-              [aha, "hears what the public says"],
-              [foundertimes, "turns the group’s reaction into tomorrow’s priority"],
-              [meetly, "books the meeting that follows"],
-            ].map(([a, what]) => (
-              <li key={(a as Agent).id} className="flex items-center gap-3">
-                <Image
-                  src={(a as Agent).image}
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10"
-                />
-                <span>
-                  <span className="font-medium">{(a as Agent).name}</span>{" "}
-                  <span className="text-muted">{what as string}</span>
+      <Container>
+        <Eyebrow>The ecosystem</Eyebrow>
+        <SectionTitle>A partner reaches out on X. By Wednesday, you’re ready.</SectionTitle>
+        <p {...reveal(2)} className="mt-4 max-w-2xl leading-relaxed text-muted">
+          AHA spots the post in your daily digest. You ask Meetly to reach out, and it books the call. The next
+          morning, The Founder Times puts the meeting first on your advisor desk — each agent in its own lane,
+          with you deciding in between.
+        </p>
+        <p {...reveal(3)} className="mt-6 pl-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+          Example
+        </p>
+        <ol className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {ecosystem.map((step, i) => (
+            <li key={step.label} className="flex flex-col">
+              <p className="mb-3 flex items-center gap-2.5">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-foreground text-[10px] font-medium text-background">
+                  {i + 1}
                 </span>
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className="mx-auto w-full max-w-md">
-          <Thread
-            title="Acme HQ"
-            image={aha.image}
-            images={[aha.image, foundertimes.image]}
-            people={2}
-            messages={ecosystemThread}
-          />
-        </div>
+                <span className="leading-tight">
+                  <span className="block text-sm font-medium">{step.label}</span>
+                  <span className="block text-xs text-muted">{step.when}</span>
+                </span>
+              </p>
+              <Thread
+                compact
+                title={step.people ? "Priya & Meetly" : step.a.name}
+                image={step.a.image}
+                people={step.people}
+                messages={step.messages}
+                delay={ecosystemDelays[i]}
+              />
+              {step.note && <p className="mt-2 pl-1 text-xs text-muted">{step.note}</p>}
+            </li>
+          ))}
+        </ol>
       </Container>
     </section>
   );

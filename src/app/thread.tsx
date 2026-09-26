@@ -13,28 +13,38 @@ export type Message =
 export function Thread({
   title,
   image,
-  images,
   people,
   messages,
+  compact = false,
+  delay = 0,
 }: {
   title: string;
   image: string;
-  /** A group's members, drawn as overlapping avatars in place of `image`. */
-  images?: string[];
   /** Set for a group: how many other people are in it ("2 People"). */
   people?: number;
   messages: Message[];
+  /** A smaller card for timelines: slim header, no composer, no caption. */
+  compact?: boolean;
+  /** Extra ms before the first message, to play side-by-side threads one
+   *  after another. Ignored below the xl breakpoint, where they stack. */
+  delay?: number;
 }) {
   const schedule = arrivals(messages);
+  const shown = reveal();
   const lastOut = messages.findLastIndex((m) => m.kind === "out");
   return (
-    <figure {...reveal()} data-thread className="imsg">
-      <figcaption className="mb-2 pl-4 font-mono text-[10px] uppercase tracking-wider text-muted">
+    <figure
+      {...shown}
+      style={{ ...shown.style, "--delay": `${delay}ms` } as React.CSSProperties}
+      data-thread
+      className={`imsg ${compact ? "imsg-compact" : ""}`}
+    >
+      <figcaption className={compact ? "sr-only" : "mb-2 pl-4 font-mono text-[10px] uppercase tracking-wider text-muted"}>
         Example<span className="sr-only">: an illustrative thread with {title}</span>
       </figcaption>
       <div className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-[0_24px_48px_-32px_rgb(0_0_0/0.35)]">
-        <header className="grid grid-cols-[1fr_auto_1fr] items-start bg-linear-to-b from-[#f2f2f4] to-white px-3 pt-3 pb-1">
-          <span aria-hidden className="glass grid size-10 place-items-center rounded-full">
+        <header className={`items-start bg-linear-to-b ${compact ? "flex justify-center" : "grid grid-cols-[1fr_auto_1fr]"} from-[#f2f2f4] to-white px-3 pt-3 pb-1`}>
+          <span aria-hidden className={`glass size-10 place-items-center rounded-full ${compact ? "hidden" : "grid"}`}>
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6" />
               <path d="m17.5 3.5 3 3L13 14l-3.5.5.5-3.5z" />
@@ -42,23 +52,14 @@ export function Thread({
           </span>
           <div className="flex flex-col items-center">
             <span className="relative">
-              {images ? (
-                <span className="flex">
-                  {images.map((src, k) => (
-                    <Image
-                      key={src}
-                      src={src}
-                      alt=""
-                      width={52}
-                      height={52}
-                      className={`size-13 rounded-full ring-2 ring-white ${k ? "-ml-4 mt-3" : ""}`}
-                    />
-                  ))}
-                </span>
-              ) : (
-                <Image src={image} alt="" width={64} height={64} className="size-16 rounded-full outline-1 -outline-offset-1 outline-black/10" />
-              )}
-              {people && !images && (
+              <Image
+                src={image}
+                alt=""
+                width={64}
+                height={64}
+                className={`rounded-full outline-1 -outline-offset-1 outline-black/10 ${compact ? "size-11" : "size-16"}`}
+              />
+              {people && (
                 <span aria-hidden className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-linear-to-b from-[#96a1c0] to-[#6e7a9c] ring-2 ring-white">
                   <svg viewBox="0 0 16 16" className="size-3.5 fill-white">
                     <circle cx="8" cy="5.5" r="3" />
@@ -68,20 +69,20 @@ export function Thread({
               )}
             </span>
             <p className="glass -mt-1.5 flex items-center gap-1 rounded-full px-3 py-1 text-[15px] font-bold tracking-tight">
-              {people && !images ? `${people} People` : title}
+              {people ? `${people} People` : title}
               <svg aria-hidden viewBox="0 0 8 12" className="h-2.5 w-auto text-muted">
                 <path d="m2 1 4 5-4 5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </p>
-            <p className="mt-1.5 text-[11px] leading-tight text-muted">iMessage</p>
-            <p className="flex items-center gap-0.5 text-[11px] leading-tight text-muted">
+            <p className={`mt-1.5 text-[11px] leading-tight text-muted ${compact ? "hidden" : ""}`}>iMessage</p>
+            <p className={`items-center gap-0.5 text-[11px] leading-tight text-muted ${compact ? "hidden" : "flex"}`}>
               <svg aria-hidden viewBox="0 0 12 14" className="h-2.5 w-auto fill-current">
                 <path d="M3 6V4.5a3 3 0 0 1 6 0V6h.5A1.5 1.5 0 0 1 11 7.5v5A1.5 1.5 0 0 1 9.5 14h-7A1.5 1.5 0 0 1 1 12.5v-5A1.5 1.5 0 0 1 2.5 6zm1.5 0h3V4.5a1.5 1.5 0 0 0-3 0z" />
               </svg>
               Encrypted
             </p>
           </div>
-          <span aria-hidden className="glass grid size-10 place-items-center justify-self-end rounded-full">
+          <span aria-hidden className={`glass size-10 place-items-center justify-self-end rounded-full ${compact ? "hidden" : "grid"}`}>
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
               <rect x="3" y="6" width="13" height="12" rx="3" />
               <path d="m16 10.5 5-3v9l-5-3z" />
@@ -97,7 +98,7 @@ export function Thread({
               <li
                 key={i}
                 className={`relative flex flex-col ${i === 0 ? "" : starts ? "mt-2.5" : "mt-0.5"}`}
-                style={{ "--at": `${schedule[i]}ms` } as React.CSSProperties}
+                style={{ "--at": `calc(var(--delay, 0ms) + ${schedule[i]}ms)` } as React.CSSProperties}
               >
                 {typed(m) && <Typing below={named} />}
                 <div className="msg flex flex-col">
@@ -109,7 +110,7 @@ export function Thread({
             );
           })}
         </ol>
-        <div aria-hidden className="flex items-center gap-2 px-3 pb-3">
+        <div aria-hidden className={`items-center gap-2 px-3 pb-3 ${compact ? "hidden" : "flex"}`}>
           <span className="glass grid size-9 shrink-0 place-items-center rounded-full text-xl leading-none text-muted">
             +
           </span>
@@ -167,10 +168,10 @@ function Bubble({ message: m, tail }: { message: Message; tail: boolean }) {
     case "note":
       return <p className="mx-auto max-w-[85%] py-1 text-center text-[11px] text-muted">{m.text}</p>;
     case "out":
-      return <p className={`imsg-out${t} ml-auto max-w-[75%] whitespace-pre-line`}>{m.text}</p>;
+      return <p className={`imsg-out${t} ml-auto max-w-[var(--bubble-max,75%)] whitespace-pre-line`}>{m.text}</p>;
     case "file":
       return (
-        <p className={`imsg-in${t} mr-auto flex max-w-[75%] items-center gap-3`}>
+        <p className={`imsg-in${t} mr-auto flex max-w-[var(--bubble-max,75%)] items-center gap-3`}>
           <span
             aria-hidden
             className="grid h-10 w-8 shrink-0 place-items-center rounded-md bg-white font-mono text-[9px] font-bold text-[#e5484d]"
@@ -184,6 +185,6 @@ function Bubble({ message: m, tail }: { message: Message; tail: boolean }) {
         </p>
       );
     case "in":
-      return <p className={`imsg-in${t} mr-auto max-w-[75%] whitespace-pre-line`}>{m.text}</p>;
+      return <p className={`imsg-in${t} mr-auto max-w-[var(--bubble-max,75%)] whitespace-pre-line`}>{m.text}</p>;
   }
 }
