@@ -9,6 +9,9 @@
   --muted: #5e5e6a;
   --accent: #6a4cf0;
   --accent-ink: #ffffff;
+  /* iMessage blue, darkened from #007aff so white text reaches 4.6:1. */
+  --imsg-blue: #0071eb;
+  --imsg-gray: #e9e9eb;
 }
 
 
@@ -21,6 +24,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  --color-imsg-blue: var(--imsg-blue);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-serif-display);
@@ -53,6 +57,76 @@ p {
 
 section[id] {
   scroll-margin-top: 5rem;
+}
+
+/* Example threads drawn like iMessage. In the components layer so
+   utilities (e.g. `absolute` on the typing bubble) still win. */
+@layer components {
+  .imsg {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+  }
+
+  .imsg-in,
+  .imsg-out {
+    position: relative;
+    z-index: 0;
+    border-radius: 18px;
+    padding: 7px 12px;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .imsg-in {
+    background: var(--imsg-gray);
+    color: #000;
+  }
+
+  .imsg-out {
+    background: var(--imsg-blue);
+    color: #fff;
+  }
+
+  /* The tail: a bubble-colored corner, then a page-colored scoop cut out of
+     it. Negative z-index keeps both behind the text. */
+  .imsg-tail::before,
+  .imsg-tail::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    height: 20px;
+  }
+
+  .imsg-tail::before {
+    width: 20px;
+  }
+
+  .imsg-tail::after {
+    width: 10px;
+    background: #fff;
+  }
+
+  .imsg-in.imsg-tail::before {
+    left: -7px;
+    background: var(--imsg-gray);
+    border-bottom-right-radius: 16px;
+  }
+
+  .imsg-in.imsg-tail::after {
+    left: -10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .imsg-out.imsg-tail::before {
+    right: -7px;
+    background: var(--imsg-blue);
+    border-bottom-left-radius: 16px;
+  }
+
+  .imsg-out.imsg-tail::after {
+    right: -10px;
+    border-bottom-left-radius: 10px;
+  }
 }
 
 /* Scroll reveal. Hidden only when the inline script ran (html[data-reveal])
