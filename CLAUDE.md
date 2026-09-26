@@ -106,6 +106,7 @@ three agents in plain text.
   don't use its "inspired by …" tagline, until the owner confirms.
 - Facts about an agent come from its README. If the site needs a claim the
   README doesn't support, leave a `TODO(owner)` instead of writing it.
-- Must work at phone width (16px gutters, no horizontal scroll), light and
-  dark mode, static-renderable (no client-only data fetching).
+- Must work at phone width (16px gutters, no horizontal scroll), always
+  light: white background with the purple accent, even when the device is in
+  dark mode. Static-renderable (no client-only data fetching).
 - Run `npm run lint` and `npm run build` before each commit.

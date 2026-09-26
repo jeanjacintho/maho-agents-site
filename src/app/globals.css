@@ -11,18 +11,6 @@
   --accent-ink: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0e0e12;
-    --foreground: #f2f2f5;
-    --surface: #16161c;
-    --sunk: #212129;
-    --line: #2e2e38;
-    --muted: #a0a0ad;
-    --accent: #8f78ff;
-    --accent-ink: #0e0b1f;
-  }
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -40,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
