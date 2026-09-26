@@ -97,9 +97,6 @@ linked as the base Maho runs on.
    - purchases, logins, downloads and sends outside an agent's scope stay
      with the owner;
    - network errors or the Mac being offline are reported, never hidden.
-6. **Proof** — one concrete example per agent (e.g. a Founder Times edition
-   page, a Meetly group, an AHA digest). Leave placeholders until the owner
-   supplies anonymized material; never invent one.
 7. **Runs on Plow** — three short blocks linking to official docs: a real
    phone line (Plow Chat, https://howto.plow.co/), Latch
    (https://howto.plow.co/latch), Agent Index
@@ -129,6 +126,8 @@ linked as the base Maho runs on.
 
 ## Rules
 
+- No proof / "real output" section: the owner won't publish examples of
+  real use.
 - Don't name the real person The Founder Times' advisor is modeled on, and
   don't use its "inspired by …" tagline, until the owner confirms.
 - Facts about an agent come from its README. If the site needs a claim the
@@ -147,8 +146,7 @@ linked as the base Maho runs on.
   between the rails on xl. The rails run through the footer. No dark purple bands — they clash with the
   light page.
 - The page reads in three chapters — 01 Meet the agents (A day with them,
-  The ecosystem), 02 Why you can trust them (How it works, Transparency,
-  Proof), 03 Get started (Runs on Plow, Try them) — then the final CTA.
+  The ecosystem), 02 Why you can trust them (How it works, Transparency), 03 Get started (Runs on Plow, Try them) — then the final CTA.
   Only chapters get a hard break (a hatched strip with the chapter name,
   lilac crosses where it meets the side rails (xl screens only)); sections inside
   a chapter are separated by space. Chapter 1 titles are one size larger and

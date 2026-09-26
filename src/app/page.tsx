@@ -32,7 +32,6 @@ export default function Home() {
             <div className="bg-surface">
               <HowItWorks />
               <Limits />
-              <Proof />
             </div>
             <Chapter n="03" title="Get started" />
             <RunsOnPlow />
@@ -579,7 +578,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
 
 function Limits() {
   return (
-    <section id="limits" className="py-12 sm:py-14">
+    <section id="limits" className="pt-12 pb-16 sm:pt-14 sm:pb-20">
       <Container>
         <Eyebrow>Transparency and limits</Eyebrow>
         <SectionTitle>
@@ -604,49 +603,6 @@ function Limits() {
             </div>
           ))}
         </div>
-      </Container>
-    </section>
-  );
-}
-
-/* 6. Proof */
-
-// TODO(owner): replace each placeholder with real, anonymized material.
-// Never invent an example here.
-const proof = [
-  { a: foundertimes, what: "A printed edition page" },
-  { a: meetly, what: "A group Meetly opened and booked" },
-  { a: aha, what: "A daily digest" },
-];
-
-function Proof() {
-  return (
-    <section id="proof" className="pt-12 pb-16 sm:pt-14 sm:pb-20">
-      <Container>
-        <Eyebrow>Proof</Eyebrow>
-        <SectionTitle>
-          Real output, <Mark>one per agent</Mark>.
-        </SectionTitle>
-        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
-          Anonymized examples from real use will go here. Until then, this space stays empty on purpose.
-        </p>
-        <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {proof.map(({ a, what }, i) => (
-            <li
-              key={a.id}
-              {...reveal(i)}
-              className="flex min-h-40 flex-col justify-between rounded-3xl border border-dashed border-accent/30 p-6"
-            >
-              <div className="flex items-center gap-3">
-                <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10" />
-                <span className="font-medium">{a.name}</span>
-              </div>
-              <div>
-                <p className="font-display text-2xl leading-tight">{what}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );
