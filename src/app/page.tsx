@@ -18,26 +18,28 @@ export default function Home() {
         Skip to content
       </a>
       <Nav />
-      <main id="main" className="flex flex-1 flex-col">
-        <div className="relative">
-          <Rails />
-          <Hero />
-          <Chapter n="01" title="Meet the agents" />
-          <Day />
-          <Ecosystem />
-          <Chapter n="02" title="Why you can trust them" />
-          <div className="bg-surface">
-            <HowItWorks />
-            <Limits />
-            <Proof />
+      <div className="relative flex flex-1 flex-col">
+        <Rails />
+        <main id="main" className="flex flex-1 flex-col">
+          <div className="relative">
+            <Hero />
+            <Chapter n="01" title="Meet the agents" />
+            <Day />
+            <Ecosystem />
+            <Chapter n="02" title="Why you can trust them" />
+            <div className="bg-surface">
+              <HowItWorks />
+              <Limits />
+              <Proof />
+            </div>
+            <Chapter n="03" title="Get started" />
+            <RunsOnPlow />
+            <TryThem />
           </div>
-          <Chapter n="03" title="Get started" />
-          <RunsOnPlow />
-          <TryThem />
-        </div>
-        <FinalCta />
-      </main>
-      <Footer />
+          <FinalCta />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
@@ -745,31 +747,40 @@ function TryThem() {
 function FinalCta() {
   return (
     <section className="pb-20 sm:pb-28">
-      <Container>
-        <div className="relative isolate overflow-hidden rounded-[2.5rem] border border-line bg-linear-to-b from-[#efe9ff] to-[#f9f7ff] px-6 py-16 text-center sm:px-12 sm:py-24">
-          <span
-            aria-hidden
-            className="absolute inset-x-0 -top-32 -z-10 mx-auto h-72 max-w-2xl rounded-full bg-accent/20 blur-3xl"
-          />
-          <h2 {...reveal(0)} className="mx-auto max-w-3xl font-display text-4xl leading-[1.1] text-balance sm:text-5xl">
-            Your paper, your calendar, your reputation — <Mark><em>on a text thread.</em></Mark>
-          </h2>
-          <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
-            {agents.map((a) => (
-              <li key={a.id}>
-                <IndexButton a={a}>{a.name}</IndexButton>
-              </li>
-            ))}
-          </ul>
-          <a
-            {...reveal(2)}
-            href={links.github}
-            className="mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
-          >
-            View on GitHub
-          </a>
+      {/* On xl the card becomes a grid cell: square, edge to edge with the
+          rails, with full-width lines above and below and crosses at the
+          corners. Smaller screens keep a rounded card. */}
+      <div className="border-line xl:border-y">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 xl:px-0">
+          <div className="relative isolate overflow-hidden rounded-[2.5rem] border border-line bg-linear-to-b from-[#efe9ff] to-[#f9f7ff] px-6 py-16 text-center sm:px-12 sm:py-24 xl:rounded-none xl:border-0">
+            <span
+              aria-hidden
+              className="absolute inset-x-0 -top-32 -z-10 mx-auto h-72 max-w-2xl rounded-full bg-accent/20 blur-3xl"
+            />
+            <h2 {...reveal(0)} className="mx-auto max-w-3xl font-display text-4xl leading-[1.1] text-balance sm:text-5xl">
+              Your paper, your calendar, your reputation — <Mark><em>on a text thread.</em></Mark>
+            </h2>
+            <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
+              {agents.map((a) => (
+                <li key={a.id}>
+                  <IndexButton a={a}>{a.name}</IndexButton>
+                </li>
+              ))}
+            </ul>
+            <a
+              {...reveal(2)}
+              href={links.github}
+              className="mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+            >
+              View on GitHub
+            </a>
+          </div>
+          <Cross className="top-0 left-0 -translate-x-1/2 -translate-y-1/2" />
+          <Cross className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
+          <Cross className="bottom-0 left-0 -translate-x-1/2 translate-y-1/2" />
+          <Cross className="right-0 bottom-0 translate-x-1/2 translate-y-1/2" />
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
@@ -779,7 +790,9 @@ function FinalCta() {
 function Footer() {
   return (
     <footer className="border-t border-line text-sm">
-      <Container className="grid gap-10 py-12 sm:grid-cols-[1fr_2fr]">
+      <Container className="relative grid gap-10 py-12 sm:grid-cols-[1fr_2fr]">
+        <Cross className="top-0 left-0 -translate-x-1/2 -translate-y-1/2" />
+        <Cross className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
         <div>
           <p className="font-display text-3xl leading-none">Maho</p>
           <p className="mt-3 max-w-xs text-muted">Three agents on one base: Plow + OpenClaw.</p>
