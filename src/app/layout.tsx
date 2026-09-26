@@ -3,6 +3,7 @@ import { Epilogue, Geist, Geist_Mono, Gochi_Hand } from "next/font/google";
 import "./globals.css";
 import { RevealScript } from "./motion";
 import { RevealOnScroll } from "./reveal";
+import { site, siteUrl } from "./site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,32 @@ const hand = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "Maho — agents that live on your text thread",
-  description:
-    "The Founder Times, Meetly and AHA: three agents on one base, Plow + OpenClaw. They never make up what they can't check, and they only act inside the rules you gave them.",
+  metadataBase: new URL(siteUrl),
+  title: { default: site.title, template: `%s — ${site.name}` },
+  description: site.description,
+  applicationName: site.name,
+  keywords: site.keywords,
+  authors: [site.author],
+  creator: site.author.name,
+  alternates: {
+    canonical: "/",
+    types: { "text/plain": [{ url: "/llms.txt", title: "llms.txt" }] },
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+  },
+  robots: { index: true, follow: true },
+  category: "technology",
 };
 
 export const viewport: Viewport = {

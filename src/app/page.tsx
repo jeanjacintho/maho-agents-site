@@ -2,6 +2,7 @@ import Image from "next/image";
 import { agent, agents, links, type Agent } from "./agents";
 import { LockScreen } from "./lockscreen";
 import { reveal } from "./motion";
+import { faqs, site, siteUrl } from "./site";
 import { Thread, type Message } from "./thread";
 
 const foundertimes = agent("thefoundertimes");
@@ -17,6 +18,7 @@ export default function Home() {
       >
         Skip to content
       </a>
+      <StructuredData />
       <Nav />
       <div className="relative flex flex-1 flex-col">
         <Rails />
@@ -35,6 +37,7 @@ export default function Home() {
             <Chapter n="03" title="Get started" />
             <RunsOnPlow />
             <TryThem />
+            <Faq />
           </div>
           <FinalCta />
         </main>
@@ -739,6 +742,101 @@ function TryThem() {
         </ul>
       </Container>
     </section>
+  );
+}
+
+/* 8b. FAQ — also mirrored in FAQPage structured data and llms-full.txt */
+
+function Faq() {
+  return (
+    <section id="faq" className="pt-4 pb-20 sm:pb-28">
+      <Container>
+        <Eyebrow>FAQ</Eyebrow>
+        <SectionTitle>
+          Questions, <Mark>answered</Mark>.
+        </SectionTitle>
+        <div {...reveal(2)} className="mt-10 divide-y divide-line border-y border-line">
+          {faqs.map((f) => (
+            <details key={f.q} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium tracking-tight [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span
+                  aria-hidden
+                  className="grid size-7 shrink-0 place-items-center rounded-full border border-line text-accent motion-safe:transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="max-w-3xl pb-6 leading-relaxed text-muted">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* Structured data (JSON-LD) for search engines and AI assistants: who is
+   behind the site, the three agents, and the FAQ. */
+
+function StructuredData() {
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#org`,
+        name: site.name,
+        url: `${siteUrl}/`,
+        description: site.description,
+        founder: { "@type": "Person", name: site.author.name, url: site.author.url },
+        sameAs: [site.author.url, ...agents.map((a) => a.index)],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: `${siteUrl}/`,
+        name: site.name,
+        description: site.description,
+        inLanguage: "en",
+        publisher: { "@id": `${siteUrl}/#org` },
+      },
+      {
+        "@type": "ItemList",
+        name: "Maho agents",
+        itemListElement: agents.map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "SoftwareApplication",
+            name: a.name,
+            description: a.tagline,
+            url: a.index,
+            image: `${siteUrl}${a.image}`,
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "macOS, iOS (iMessage)",
+            license: "https://opensource.org/license/mit",
+            author: { "@type": "Person", name: site.author.name, url: site.author.url },
+            publisher: { "@id": `${siteUrl}/#org` },
+            sameAs: [a.repo],
+          },
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }}
+    />
   );
 }
 

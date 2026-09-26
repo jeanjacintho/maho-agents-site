@@ -109,8 +109,22 @@ linked as the base Maho runs on.
 10. **Footer** — the three repos, Agent Index, licenses: all three are MIT
     © Jean Jacintho.
 
-Also ship `public/llms.txt` and `public/llms-full.txt` describing Maho and the
-three agents in plain text.
+8b. **FAQ** — questions answered from the READMEs, as native `<details>`.
+    The same list feeds the FAQPage structured data and llms-full.txt, so
+    edit it once in `src/app/site.ts`.
+
+## SEO and GEO
+
+- `src/app/site.ts` holds the site URL, title, description, keywords and
+  FAQ. `siteUrl` comes from `NEXT_PUBLIC_SITE_URL`, else Vercel's production
+  URL; set the env var once a custom domain exists.
+- `/llms.txt`, `/llms-full.txt` and `/company.txt` are static route handlers
+  (`src/app/*.txt/route.ts`, content in `src/app/text-files.ts`) built from
+  the same data as the page. Don't add copies under `public/`.
+- `robots.ts` allows everyone and names the AI crawlers; `sitemap.ts`,
+  `opengraph-image.tsx` (share card) and JSON-LD in the page (Organization,
+  WebSite, the three agents, FAQPage) complete it. Structured data must
+  match what the page shows.
 
 ## Rules
 
