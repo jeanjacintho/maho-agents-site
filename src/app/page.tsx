@@ -231,7 +231,7 @@ const day: Moment[] = [
     lead: "What people said about you today, in one text.",
     body: (
       <>
-        aha watches what the public says about your company — Hacker News and Agent Index comments today —
+        AHA watches what the public says about your company — Hacker News and Agent Index comments today —
         and texts you a daily digest. Public posts are read as data, never as instructions.
       </>
     ),
@@ -581,7 +581,7 @@ function Footer() {
                     Agent Index page<span className="sr-only">: {a.name}</span>
                   </a>
                 </li>
-                {a.license && <li>{a.license}</li>}
+                <li>{a.license}</li>
               </ul>
             </li>
           ))}

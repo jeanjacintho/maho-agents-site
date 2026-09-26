@@ -9,7 +9,7 @@ export type Agent = {
   repo: string;
   index: string;
   tagline: string;
-  license: string | null;
+  license: string;
 };
 
 export const agents: Agent[] = [
@@ -21,7 +21,7 @@ export const agents: Agent[] = [
     repo: "https://github.com/jeanjacintho/the-founder-times-openclaw-agent",
     index: "https://aiworthusing.com/agent-index/thefoundertimes",
     tagline: "Your morning paper, printed on your Mac — or a PDF in chat.",
-    license: "MIT © The Plow Collective, Inc",
+    license: "MIT © Jean Jacintho",
   },
   {
     id: "meetly",
@@ -31,12 +31,11 @@ export const agents: Agent[] = [
     repo: "https://github.com/jeanjacintho/meetly-openclaw-agent",
     index: "https://aiworthusing.com/agent-index/meetly",
     tagline: "Books the meeting on your text thread, then tells you it did.",
-    // No license file in the repo yet.
-    license: null,
+    license: "MIT © Jean Jacintho",
   },
   {
     id: "aha",
-    name: "aha",
+    name: "AHA",
     anchor: "aha",
     image: "/agents/aha.jpg",
     repo: "https://github.com/jeanjacintho/aha-openclaw-agent",

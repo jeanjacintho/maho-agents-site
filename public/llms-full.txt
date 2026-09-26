@@ -17,7 +17,7 @@ All three agents are still in testing.
 
 Agent Index: https://aiworthusing.com/agent-index/thefoundertimes
 Source: https://github.com/jeanjacintho/the-founder-times-openclaw-agent
-License: MIT, © The Plow Collective, Inc
+License: MIT, © Jean Jacintho
 
 Your morning paper, printed. A compact Letter paper that goes to a printer on
 your Mac when one is there; the same edition lands as a PDF in chat.
@@ -42,7 +42,7 @@ your Mac when one is there; the same edition lands as a PDF in chat.
 
 Agent Index: https://aiworthusing.com/agent-index/meetly
 Source: https://github.com/jeanjacintho/meetly-openclaw-agent
-License: no license file yet
+License: MIT, © Jean Jacintho
 
 A scheduling assistant on a text thread. Every five minutes it reads new
 iMessages on your Mac through Latch. When someone wants to meet, it:
@@ -77,7 +77,7 @@ person per request, and rescheduling or cancelling a booked meeting is left to
 you.
 
 
-## aha
+## AHA
 
 Agent Index: https://aiworthusing.com/agent-index/aha
 Source: https://github.com/jeanjacintho/aha-openclaw-agent

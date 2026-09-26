@@ -22,7 +22,7 @@ const serif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Maho — agents that live on your text thread",
   description:
-    "The Founder Times, Meetly and aha: three agents on one base, Plow + OpenClaw. They never make up what they can't check, and they only act inside the rules you gave them.",
+    "The Founder Times, Meetly and AHA: three agents on one base, Plow + OpenClaw. They never make up what they can't check, and they only act inside the rules you gave them.",
 };
 
 export const viewport: Viewport = {

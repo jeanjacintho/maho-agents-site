@@ -25,7 +25,7 @@ after".
 |---|---|---|---|
 | The Founder Times | https://github.com/jeanjacintho/the-founder-times-openclaw-agent | https://aiworthusing.com/agent-index/thefoundertimes | `/agents/founder-times.png` |
 | Meetly | https://github.com/jeanjacintho/meetly-openclaw-agent | https://aiworthusing.com/agent-index/meetly | `/agents/meetly.png` |
-| aha | https://github.com/jeanjacintho/aha-openclaw-agent | https://aiworthusing.com/agent-index/aha | `/agents/aha.jpg` |
+| AHA | https://github.com/jeanjacintho/aha-openclaw-agent | https://aiworthusing.com/agent-index/aha | `/agents/aha.jpg` |
 
 - **The Founder Times** — your morning paper, printed on your Mac (or a PDF
   in chat). Opens with an advisor's three ranked, sourced recommendations,
@@ -38,9 +38,12 @@ after".
   opens a Plow group with them, offers three free times from Google Calendar
   within your days/hours, holds them, books the one they pick, and tells you
   in your DM afterwards.
-- **aha** — watches what the public says about your company (Hacker News and
+- **AHA** — watches what the public says about your company (Hacker News and
   Agent Index comments today) and texts you a daily digest. Do **not** present
   group routing by role / team claiming as shipped — it is roadmap.
+
+The agent's name is written **AHA** (all caps) in copy; its id, URL slug
+and anchor stay `aha`.
 
 All three are still in testing. Do not add "beta" / "coming soon" badges or
 claim they are production-ready; the owner will decide status later.
@@ -64,7 +67,7 @@ linked as the base Maho runs on.
      times offered → booked → owner told in DM. iMessage (via Latch), Google
      Calendar, Contacts, Plow group. Meetly speaks in third person ("Jean is
      free Tue 29/9 at 12:00").
-   - Evening — aha: the daily digest. Hacker News, Agent Index.
+   - Evening — AHA: the daily digest. Hacker News, Agent Index.
    Conversations are illustrative; make them clearly examples, never fake
    screenshots of real people.
 4. **How it works** — numbered pipeline shared by all three:
@@ -84,7 +87,7 @@ linked as the base Maho runs on.
      with the owner;
    - network errors or the Mac being offline are reported, never hidden.
 6. **Proof** — one concrete example per agent (e.g. a Founder Times edition
-   page, a Meetly group, an aha digest). Leave placeholders until the owner
+   page, a Meetly group, an AHA digest). Leave placeholders until the owner
    supplies anonymized material; never invent one.
 7. **Runs on Plow** — three short blocks linking to official docs: a real
    phone line (Plow Chat, https://howto.plow.co/), Latch
@@ -93,9 +96,8 @@ linked as the base Maho runs on.
 8. **Try them** — one button per agent to its Agent Index page. No install
    commands on the site; the Agent Index page handles that.
 9. **Final CTA** — the three Agent Index links + "View on GitHub".
-10. **Footer** — the three repos, Agent Index, licenses: aha and The Founder
-    Times are MIT (aha © Jean Jacintho; The Founder Times © The Plow
-    Collective, Inc). Meetly has no license file yet — link the repo only.
+10. **Footer** — the three repos, Agent Index, licenses: all three are MIT
+    © Jean Jacintho.
 
 Also ship `public/llms.txt` and `public/llms-full.txt` describing Maho and the
 three agents in plain text.

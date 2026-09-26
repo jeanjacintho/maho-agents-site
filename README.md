@@ -1,6 +1,6 @@
 # Maho
 
-Landing page for the Maho agent ecosystem: **aha**, **Meetly** and **The
+Landing page for the Maho agent ecosystem: **AHA**, **Meetly** and **The
 Founder Times**, three agents built on [Plow](https://plow.co) and
 [OpenClaw](https://github.com/openclaw/openclaw).
 
