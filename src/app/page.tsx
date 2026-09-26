@@ -194,7 +194,7 @@ type Moment = {
   lead: string;
   body: React.ReactNode;
   uses: string[];
-  thread: { subtitle: string; messages: Message[] };
+  thread: { people?: number; messages: Message[] };
 };
 
 const day: Moment[] = [
@@ -210,7 +210,7 @@ const day: Moment[] = [
       </>
     ),
     uses: ["Latch", "Your browser", "Calendar", "Mail", "Your printer"],
-    thread: { subtitle: "Your DM", messages: foundertimesThread },
+    thread: { messages: foundertimesThread },
   },
   {
     a: meetly,
@@ -224,7 +224,7 @@ const day: Moment[] = [
       </>
     ),
     uses: ["iMessage (via Latch)", "Google Calendar", "Contacts", "Plow group"],
-    thread: { subtitle: "A group with Ana, then your DM", messages: meetlyThread },
+    thread: { people: 2, messages: meetlyThread },
   },
   {
     a: aha,
@@ -237,7 +237,7 @@ const day: Moment[] = [
       </>
     ),
     uses: ["Hacker News", "Agent Index"],
-    thread: { subtitle: "Your DM", messages: ahaThread },
+    thread: { messages: ahaThread },
   },
 ];
 
@@ -288,7 +288,7 @@ function Day() {
                 </a>
               </div>
               <div className={`mx-auto w-full max-w-md ${i % 2 ? "lg:order-1" : ""}`}>
-                <Thread title={m.a.name} subtitle={m.thread.subtitle} image={m.a.image} messages={m.thread.messages} />
+                <Thread title={m.a.name} image={m.a.image} people={m.thread.people} messages={m.thread.messages} />
               </div>
             </li>
           ))}

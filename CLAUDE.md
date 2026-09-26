@@ -111,7 +111,7 @@ three agents in plain text.
 - Must work at phone width (16px gutters, no horizontal scroll), always
   light: white background with the purple accent, even when the device is in
   dark mode. Static-renderable (no client-only data fetching).
-- The small labels in the example threads (9–11px: "Example" badge, times,
+- The small labels in the example threads (9–11px: "Example" caption, times,
   sender names, "PDF") and the 10px step numbers in "A day with them" are
   deliberate. Don't raise them to 12px.
 - Run `npm run lint` and `npm run build` before each commit.
