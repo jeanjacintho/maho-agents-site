@@ -30,7 +30,7 @@ export function Thread({
       className="imsg overflow-hidden rounded-[2rem] border border-line bg-white shadow-[0_24px_48px_-32px_rgb(0_0_0/0.35)]"
     >
       <figcaption className="grid grid-cols-[1fr_auto_1fr] items-start border-b border-black/10 bg-[#f6f6f6] px-3 pt-3 pb-2">
-        <svg aria-hidden viewBox="0 0 12 20" className="mt-3 h-4 w-auto text-imsg-blue">
+        <svg aria-hidden viewBox="0 0 12 20" className="mt-3 h-4 w-auto text-imsg-sent">
           <path d="M10 2 2 10l8 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <div className="flex flex-col items-center">

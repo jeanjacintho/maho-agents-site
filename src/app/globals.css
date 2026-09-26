@@ -9,8 +9,8 @@
   --muted: #5e5e6a;
   --accent: #6a4cf0;
   --accent-ink: #ffffff;
-  /* iMessage blue, darkened from #007aff so white text reaches 4.6:1. */
-  --imsg-blue: #0071eb;
+  /* Sent bubbles use the brand purple instead of iMessage blue. */
+  --imsg-sent: var(--accent);
   --imsg-gray: #e9e9eb;
 }
 
@@ -24,7 +24,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
-  --color-imsg-blue: var(--imsg-blue);
+  --color-imsg-sent: var(--imsg-sent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-serif-display);
@@ -82,7 +82,7 @@ section[id] {
   }
 
   .imsg-out {
-    background: var(--imsg-blue);
+    background: var(--imsg-sent);
     color: #fff;
   }
 
@@ -119,7 +119,7 @@ section[id] {
 
   .imsg-out.imsg-tail::before {
     right: -7px;
-    background: var(--imsg-blue);
+    background: var(--imsg-sent);
     border-bottom-left-radius: 16px;
   }
 
