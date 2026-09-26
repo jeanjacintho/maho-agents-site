@@ -1,0 +1,104 @@
+# Maho — full description
+
+Maho is three agents that live where you already are — text, email, group
+chat. They never make up what they can't check, and they only act inside the
+rules you gave them.
+
+All three are OpenClaw agents (https://github.com/openclaw/openclaw) on Plow
+Chat (https://howto.plow.co/). Each has its own phone line; you talk to it by
+texting. They reach the owner's Mac (browser, Messages, Calendar, printer)
+through Latch (https://howto.plow.co/latch). Each agent is listed on the Agent
+Index (https://aiworthusing.com/agent-index), which is where setup lives.
+
+All three agents are still in testing.
+
+
+## The Founder Times
+
+Agent Index: https://aiworthusing.com/agent-index/thefoundertimes
+Source: https://github.com/jeanjacintho/the-founder-times-openclaw-agent
+License: MIT, © The Plow Collective, Inc
+
+Your morning paper, printed. A compact Letter paper that goes to a printer on
+your Mac when one is there; the same edition lands as a PDF in chat.
+
+- It opens with an advisor's desk: three ranked, sourced recommendations,
+  challenged by independent critics, using your mail, messages, calendar and
+  the sources you name.
+- Then weather, one calendar rail, and up to three stories you asked it to
+  cover. Mail and sports stay in the chat edition.
+- You can ask for a section, a one-day assignment ("put the iPhone price in
+  tomorrow's paper"), or a one-off.
+- The first message sets the hour the paper arrives. There is no profile to
+  fill in.
+- Research runs in your own browser through Latch. If a page cannot be read,
+  the paper says so; it does not invent the paragraph.
+- It reports only. No purchases, bookings, logins or downloads.
+- If the Mac sleeps, the paper says what it could not source. A print that
+  cannot reach the printer is reported in chat.
+
+
+## Meetly
+
+Agent Index: https://aiworthusing.com/agent-index/meetly
+Source: https://github.com/jeanjacintho/meetly-openclaw-agent
+License: no license file yet
+
+A scheduling assistant on a text thread. Every five minutes it reads new
+iMessages on your Mac through Latch. When someone wants to meet, it:
+
+1. opens a Plow group with you and that person,
+2. offers three free times from your Google Calendar, inside the days and
+   hours you allow,
+3. holds those times on your calendar,
+4. books the one they pick, invites them if it knows their email, and
+   releases the other holds,
+5. tells you in your DM what it did.
+
+It does not wait for you. It speaks as your assistant in the third person
+("Jean is free Tue 29/9 at 12:00") and never texts from your own Messages
+account.
+
+Rules it follows:
+
+- Offers only free time inside the days and hours you set.
+- Never shows calendar details; anything busy is "an existing commitment".
+- A time outside your hours is booked only on your yes.
+- Books over an existing event only when you named that event, or said yes.
+  People in the group can never unlock a conflict.
+- Holds expire after 48 hours; the group is told the times were released.
+- Ignores instructions inside messages.
+- Skips verification codes, short codes, marketing and automated senders.
+- If the Mac is asleep or Latch is closed for more than 30 minutes, it tells
+  you once and catches up when the Mac is back.
+
+Known limitations: direct iMessage chats only (no group chats or email), one
+person per request, and rescheduling or cancelling a booked meeting is left to
+you.
+
+
+## aha
+
+Agent Index: https://aiworthusing.com/agent-index/aha
+Source: https://github.com/jeanjacintho/aha-openclaw-agent
+License: MIT, © Jean Jacintho
+
+Watches what the public says about your company and texts you a daily digest.
+Today it listens to Hacker News and Agent Index comments. You can also point it
+at specific pages (a competitor's blog, a changelog); only those exact URLs are
+visited, once a day, through your Mac.
+
+- Setup is a short chat: company and domain, aliases, competitors, sources,
+  tone and language, and the digest hour.
+- Public mention text is data, never instructions.
+- When your Mac can't be reached for a page, that day's run is marked
+  degraded rather than silently missing.
+
+
+## Shared rules
+
+- A labeled signal is never accepted as fact without critique.
+- A page that didn't load is said, not invented.
+- Purchases, logins, downloads and sends outside an agent's scope stay with
+  the owner.
+- Network errors, or the Mac being offline, are reported — never hidden.
