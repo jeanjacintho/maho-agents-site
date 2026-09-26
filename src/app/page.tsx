@@ -87,10 +87,11 @@ function SectionHeader({
   );
 }
 
-// Faint rails at the content edges, desktop only; chapters cross them.
+// Faint rails at the content edges, only where there is margin beside the
+// content (xl); chapters cross them.
 function Rails() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden xl:block">
       <div className="mx-auto h-full max-w-6xl border-x border-line" />
     </div>
   );
@@ -99,7 +100,7 @@ function Rails() {
 // A small plus where a chapter line crosses a rail.
 function Cross({ className }: { className: string }) {
   return (
-    <svg aria-hidden viewBox="0 0 11 11" className={`absolute z-20 hidden size-[11px] text-accent/60 lg:block ${className}`}>
+    <svg aria-hidden viewBox="0 0 11 11" className={`absolute z-20 hidden size-[11px] text-accent/60 xl:block ${className}`}>
       <path d="M5.5 0v11M0 5.5h11" stroke="currentColor" strokeWidth="1.2" />
     </svg>
   );
@@ -176,6 +177,10 @@ function Nav() {
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-4 text-sm">
+          {/* A label, not a control: square corners and no hover, unlike the pill buttons. */}
+          <span className="hidden rounded-md border border-accent/50 bg-[#ece6ff] px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#2e1f86] lg:inline-block">
+            Your agent ecosystem
+          </span>
           <a href={links.github} className="text-muted hover:text-foreground">
             GitHub
           </a>

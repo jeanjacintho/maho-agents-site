@@ -133,7 +133,7 @@ three agents in plain text.
   The ecosystem), 02 Why you can trust them (How it works, Transparency,
   Proof), 03 Get started (Runs on Plow, Try them) — then the final CTA.
   Only chapters get a hard break (a hatched strip with the chapter name,
-  lilac crosses where it meets the desktop-only side rails); sections inside
+  lilac crosses where it meets the side rails (xl screens only)); sections inside
   a chapter are separated by space. Chapter 1 titles are one size larger and
   use a two-column header on desktop.
 - Run `npm run lint` and `npm run build` before each commit.
