@@ -81,14 +81,6 @@ section[id] {
   -webkit-box-decoration-break: clone;
 }
 
-/* On the dark band the marker is a brighter purple under white text. */
-.band {
-  --hl: rgb(139 114 255 / 0.75);
-}
-
-.band :focus-visible {
-  outline-color: #fff;
-}
 
 /* Example threads drawn like iMessage. In the components layer so
    utilities (e.g. `absolute` on the typing bubble) still win. */

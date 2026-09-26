@@ -133,13 +133,9 @@ function Mark({ children }: { children: React.ReactNode }) {
 const outlineButton =
   "group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
 
-// White outline for the dark purple band.
-const outlineButtonOnDark =
-  "group inline-flex items-center justify-center gap-2 rounded-full border border-white/50 px-5 py-2.5 text-sm font-medium text-white transition-[background-color,color,scale] duration-150 ease-out hover:bg-white hover:text-[#24166b] active:scale-[0.96]";
-
-function IndexButton({ a, onDark = false, children }: { a: Agent; onDark?: boolean; children: React.ReactNode }) {
+function IndexButton({ a, children }: { a: Agent; children: React.ReactNode }) {
   return (
-    <a href={a.index} className={onDark ? outlineButtonOnDark : outlineButton}>
+    <a href={a.index} className={outlineButton}>
       {children}
       <Arrow />
     </a>
@@ -748,31 +744,31 @@ function TryThem() {
 
 function FinalCta() {
   return (
-    <section className="band relative isolate overflow-hidden bg-[#24166b] py-24 text-white sm:py-32">
-      <span
-        aria-hidden
-        className="absolute inset-x-0 -top-40 -z-10 mx-auto h-96 max-w-3xl rounded-full bg-accent/60 blur-3xl"
-      />
-      <Container className="flex flex-col items-center text-center">
-        <h2 {...reveal(0)} className="max-w-3xl font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-          Your paper, your calendar, your reputation — <Mark><em>on a text thread.</em></Mark>
-        </h2>
-        <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
-          {agents.map((a) => (
-            <li key={a.id}>
-              <IndexButton a={a} onDark>
-                {a.name}
-              </IndexButton>
-            </li>
-          ))}
-        </ul>
-        <a
-          {...reveal(2)}
-          href={links.github}
-          className="mt-6 text-sm font-medium text-white/85 underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white"
-        >
-          View on GitHub
-        </a>
+    <section className="pb-20 sm:pb-28">
+      <Container>
+        <div className="relative isolate overflow-hidden rounded-[2.5rem] border border-line bg-linear-to-b from-[#efe9ff] to-[#f9f7ff] px-6 py-16 text-center sm:px-12 sm:py-24">
+          <span
+            aria-hidden
+            className="absolute inset-x-0 -top-32 -z-10 mx-auto h-72 max-w-2xl rounded-full bg-accent/20 blur-3xl"
+          />
+          <h2 {...reveal(0)} className="mx-auto max-w-3xl font-display text-4xl leading-[1.1] text-balance sm:text-5xl">
+            Your paper, your calendar, your reputation — <Mark><em>on a text thread.</em></Mark>
+          </h2>
+          <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
+            {agents.map((a) => (
+              <li key={a.id}>
+                <IndexButton a={a}>{a.name}</IndexButton>
+              </li>
+            ))}
+          </ul>
+          <a
+            {...reveal(2)}
+            href={links.github}
+            className="mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+          >
+            View on GitHub
+          </a>
+        </div>
       </Container>
     </section>
   );
