@@ -69,15 +69,7 @@ export function LockScreen() {
           <path
             className="hint-stroke"
             pathLength="1"
-            d="M22 4c8 18 22 24 18 40-3 13-20 12-17 0 3-11 22-6 32 8 12 17 18 36 36 46"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            className="hint-head"
-            d="M91 98l-13 1m13-1-6-11"
+            d="M22 4c8 18 22 24 18 40-3 13-20 12-17 0 3-11 22-6 32 8 12 17 18 36 36 46L78 99L91 98L85 87"
             stroke="currentColor"
             strokeWidth="3"
             strokeLinecap="round"
