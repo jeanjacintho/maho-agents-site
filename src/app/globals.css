@@ -182,8 +182,9 @@ section[id] {
   }
 }
 
-/* Lock screen notifications. Each row grows from zero height at the bottom
-   of the list, lifting the ones above it. Visible by default. */
+/* Lock screen notifications. Each row opens at the bottom of the list,
+   lifting the ones above it, and slides in from the right with an
+   ease-in-out curve. Visible by default. */
 .notif {
   display: grid;
   grid-template-rows: 1fr;
@@ -198,7 +199,7 @@ section[id] {
   html[data-reveal] .lock .notif {
     grid-template-rows: 0fr;
     opacity: 0;
-    translate: 0 12px;
+    translate: 110% 0;
   }
 
   html[data-reveal] .lock[data-shown] .notif {
@@ -206,9 +207,9 @@ section[id] {
     opacity: 1;
     translate: 0 0;
     transition-property: grid-template-rows, opacity, translate;
-    transition-duration: 550ms, 400ms, 550ms;
-    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-    transition-delay: var(--d), calc(var(--d) + 150ms), var(--d);
+    transition-duration: 400ms, 250ms, 500ms;
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: var(--d), calc(var(--d) + 100ms), calc(var(--d) + 100ms);
   }
 }
 
@@ -230,17 +231,17 @@ section[id] {
 
   html[data-reveal] .lock[data-shown] ~ .hint {
     opacity: 1;
-    transition: opacity 400ms ease-out 700ms;
+    transition: opacity 400ms ease-out 450ms;
   }
 
   html[data-reveal] .lock[data-shown] ~ .hint .hint-stroke {
     stroke-dashoffset: 0;
-    transition: stroke-dashoffset 700ms cubic-bezier(0.2, 0, 0, 1) 900ms;
+    transition: stroke-dashoffset 700ms cubic-bezier(0.2, 0, 0, 1) 650ms;
   }
 
   html[data-reveal] .lock[data-shown] ~ .hint .hint-head {
     opacity: 1;
-    transition: opacity 150ms ease-out 1550ms;
+    transition: opacity 150ms ease-out 1300ms;
   }
 }
 

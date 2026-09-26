@@ -36,7 +36,7 @@ export function LockScreen() {
               <li
                 key={n.a.id}
                 className="notif"
-                style={{ "--d": `${600 + i * 1000}ms` } as React.CSSProperties}
+                style={{ "--d": `${300 + i * 600}ms` } as React.CSSProperties}
               >
                 <div>
                   <div className="px-1.5 pt-2 pb-1.5">
