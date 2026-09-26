@@ -50,14 +50,28 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 // Outlined, so the hero keeps the page's only filled action.
 const outlineButton =
-  "inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
+  "group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
 
 function IndexButton({ a, children }: { a: Agent; children: React.ReactNode }) {
   return (
     <a href={a.index} className={outlineButton}>
       {children}
-      <span aria-hidden>→</span>
+      <Arrow />
     </a>
+  );
+}
+
+// Arrow that nudges in its direction when its `group` parent is hovered.
+function Arrow({ down = false }: { down?: boolean }) {
+  return (
+    <span
+      aria-hidden
+      className={`inline-block motion-safe:transition-transform motion-safe:duration-150 motion-safe:ease-out ${
+        down ? "motion-safe:group-hover:translate-y-0.5" : "motion-safe:group-hover:translate-x-1"
+      }`}
+    >
+      {down ? "↓" : "→"}
+    </span>
   );
 }
 
@@ -111,9 +125,9 @@ function Hero() {
           <div {...reveal(3)} className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#try"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-[opacity,scale] duration-150 ease-out hover:opacity-90 active:scale-[0.96]"
+              className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-[opacity,scale] duration-150 ease-out hover:opacity-90 active:scale-[0.96]"
             >
-              See them on the Agent Index <span aria-hidden>↓</span>
+              See them on the Agent Index <Arrow down />
             </a>
             <a href="#day" className="text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground">
               Or read a day with them
@@ -282,9 +296,9 @@ function Day() {
                 </div>
                 <a
                   href={m.a.index}
-                  className="mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+                  className="group mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
                 >
-                  {m.a.name} on the Agent Index →
+                  {m.a.name} on the Agent Index <Arrow />
                 </a>
               </div>
               <div className={`mx-auto w-full max-w-md ${i % 2 ? "lg:order-1" : ""}`}>
@@ -489,7 +503,7 @@ function RunsOnPlow() {
                 <h3 className="text-lg font-semibold tracking-tight">{b.title}</h3>
                 <p className="mt-2 flex-1 leading-relaxed text-muted">{b.body}</p>
                 <span className="mt-6 text-sm font-medium">
-                  {b.cta} <span aria-hidden className="inline-block motion-safe:transition-transform motion-safe:group-hover:translate-x-1">→</span>
+                  {b.cta} <Arrow />
                 </span>
               </a>
             </li>
