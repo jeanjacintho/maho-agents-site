@@ -164,6 +164,36 @@ section[id] {
   }
 }
 
+/* Lock screen notifications. Each row grows from zero height at the bottom
+   of the list, lifting the ones above it. Visible by default. */
+.notif {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.notif > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-reveal] .lock .notif {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    translate: 0 12px;
+  }
+
+  html[data-reveal] .lock[data-shown] .notif {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    translate: 0 0;
+    transition-property: grid-template-rows, opacity, translate;
+    transition-duration: 550ms, 400ms, 550ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    transition-delay: var(--d), calc(var(--d) + 150ms), var(--d);
+  }
+}
+
 /* Scroll reveal. Hidden only when the inline script ran (html[data-reveal])
    and the reader allows motion; reveal.tsx sets data-shown once in view. */
 @media (prefers-reduced-motion: no-preference) {
