@@ -258,7 +258,7 @@ function Day() {
             >
               <div className={i % 2 ? "lg:order-2" : ""}>
                 <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                  <span className="grid size-6 place-items-center rounded-full border border-line text-xs tracking-normal">
+                  <span className="grid size-6 place-items-center rounded-full border border-line text-[10px]">
                     {i + 1}
                   </span>
                   {m.when}

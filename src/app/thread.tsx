@@ -27,7 +27,7 @@ export function Thread({
           <p className="text-sm font-semibold">{title}</p>
           <p className="text-xs text-muted">{subtitle}</p>
         </div>
-        <span className="shrink-0 rounded-full border border-line px-2 py-0.5 font-mono text-xs uppercase tracking-wider text-muted">
+        <span className="shrink-0 rounded-full border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted">
           Example
         </span>
       </figcaption>
@@ -45,7 +45,7 @@ export function Thread({
 function Bubble({ message: m }: { message: Message }) {
   switch (m.kind) {
     case "time":
-      return <p className="py-1 text-center font-mono text-xs text-muted">{m.text}</p>;
+      return <p className="py-1 text-center font-mono text-[11px] text-muted">{m.text}</p>;
     case "note":
       return (
         <p className="mx-auto max-w-[90%] rounded-full bg-sunk px-3 py-1 text-center text-xs text-muted">
@@ -63,7 +63,7 @@ function Bubble({ message: m }: { message: Message }) {
         <p className="flex max-w-[85%] items-center gap-3 rounded-2xl rounded-bl-md border border-line bg-sunk px-3.5 py-2.5">
           <span
             aria-hidden
-            className="grid h-10 w-8 shrink-0 place-items-center rounded-sm border border-line bg-surface font-mono text-xs font-bold"
+            className="grid h-10 w-8 shrink-0 place-items-center rounded-sm border border-line bg-surface font-mono text-[9px] font-bold"
           >
             PDF
           </span>
@@ -76,7 +76,7 @@ function Bubble({ message: m }: { message: Message }) {
     case "in":
       return (
         <div className="max-w-[85%]">
-          {m.from && <p className="mb-0.5 pl-1 text-xs text-muted">{m.from}</p>}
+          {m.from && <p className="mb-0.5 pl-1 text-[11px] text-muted">{m.from}</p>}
           <p className="whitespace-pre-line rounded-2xl rounded-bl-md bg-sunk px-3.5 py-2 text-[15px] leading-snug">
             {m.text}
           </p>
