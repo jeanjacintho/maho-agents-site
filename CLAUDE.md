@@ -71,7 +71,8 @@ linked as the base Maho runs on.
      Calendar, Contacts, Plow group. Meetly speaks in third person ("Jean is
      free Tue 29/9 at 12:00").
    - Evening — AHA: the daily digest. Hacker News, Agent Index.
-   Conversations are illustrative; make them clearly examples, never fake
+   Conversations are illustrative; the section intro says so (no visible
+   "Example" labels — they carry an sr-only caption), and they are never fake
    screenshots of real people.
 3b. **The ecosystem** — one opportunity through all three, as four compact
    iMessage cards: (1) Tue 18:00 AHA's digest carries Priya (Northwind)'s
@@ -135,7 +136,7 @@ linked as the base Maho runs on.
 - Must work at phone width (16px gutters, no horizontal scroll), always
   light: white background with the purple accent, even when the device is in
   dark mode. Static-renderable (no client-only data fetching).
-- The small labels in the example threads (9–11px: "Example" caption, times,
+- The small labels in the example threads (9–11px: times,
   sender names, "PDF") and the 10px step numbers in "A day with them" are
   deliberate. Don't raise them to 12px.
 - Purple has two jobs: actions (buttons, links) and emphasis in display type

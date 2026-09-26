@@ -202,7 +202,7 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="overflow-x-clip">
-      <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+      <Container className="grid gap-12 pt-10 pb-16 sm:pt-12 sm:pb-20 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:pt-10">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
           <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
@@ -473,10 +473,7 @@ function Ecosystem() {
             with you deciding in between.
           </p>
         </SectionHeader>
-        <p {...reveal(3)} className="mt-10 pl-1 font-mono text-[10px] uppercase tracking-wider text-muted">
-          Example
-        </p>
-        <ol className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {ecosystem.map((step, i) => (
             <li key={step.label} className="flex flex-col">
               <p className="mb-3 flex items-center gap-2.5">
@@ -646,7 +643,6 @@ function Proof() {
               </div>
               <div>
                 <p className="font-display text-2xl leading-tight">{what}</p>
-                <p className="mt-2 font-mono text-xs uppercase tracking-wider text-muted">Example coming</p>
               </div>
             </li>
           ))}

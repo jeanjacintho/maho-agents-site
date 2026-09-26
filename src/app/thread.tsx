@@ -39,9 +39,7 @@ export function Thread({
       data-thread
       className={`imsg ${compact ? "imsg-compact" : ""}`}
     >
-      <figcaption className={compact ? "sr-only" : "mb-2 pl-4 font-mono text-[10px] uppercase tracking-wider text-muted"}>
-        Example<span className="sr-only">: an illustrative thread with {title}</span>
-      </figcaption>
+      <figcaption className="sr-only">An illustrative thread with {title}</figcaption>
       <div className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-[0_24px_48px_-32px_rgb(0_0_0/0.35)]">
         <header className={`items-start bg-linear-to-b ${compact ? "flex justify-center" : "grid grid-cols-[1fr_auto_1fr]"} from-[#f2f2f4] to-white px-3 pt-3 pb-1`}>
           <span aria-hidden className={`glass size-10 place-items-center rounded-full ${compact ? "hidden" : "grid"}`}>

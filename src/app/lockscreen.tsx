@@ -18,9 +18,7 @@ export function LockScreen() {
         aria-hidden
         className="absolute -inset-x-16 top-10 bottom-0 -z-10 rounded-full bg-[radial-gradient(closest-side,rgb(106_76_240/0.28),transparent)] blur-2xl"
       />
-      <figcaption className="mb-2 pl-4 font-mono text-[10px] uppercase tracking-wider text-muted">
-        Example<span className="sr-only">: a lock screen with a day of notifications from the three agents</span>
-      </figcaption>
+      <figcaption className="sr-only">An illustrative lock screen with a day of notifications from the three agents</figcaption>
       <div
         {...reveal(1)}
         className="lock relative aspect-[9/19] overflow-hidden rounded-[3rem] border-[6px] border-[#1c1c1f] bg-[radial-gradient(120%_80%_at_20%_0%,#b8a6ff_0%,transparent_60%),radial-gradient(100%_70%_at_100%_100%,#2d1f7a_0%,transparent_70%),linear-gradient(160deg,#7b5cff,#4b33c9)] shadow-[0_40px_80px_-40px_rgb(40_20_120/0.6)]"
