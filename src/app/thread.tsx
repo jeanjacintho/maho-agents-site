@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { reveal } from "./motion";
 
 export type Message =
   | { kind: "in"; text: string; from?: string }
@@ -19,8 +20,9 @@ export function Thread({
   image: string;
   messages: Message[];
 }) {
+  const schedule = arrivals(messages);
   return (
-    <figure className="overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_1px_0_var(--line),0_24px_48px_-32px_rgb(0_0_0/0.35)]">
+    <figure {...reveal()} data-thread className="overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_1px_0_var(--line),0_24px_48px_-32px_rgb(0_0_0/0.35)]">
       <figcaption className="flex items-center gap-3 border-b border-line px-4 py-3">
         <Image src={image} alt="" width={36} height={36} className="size-9 rounded-full outline-1 -outline-offset-1 outline-black/10" />
         <div className="min-w-0 flex-1">
@@ -33,12 +35,44 @@ export function Thread({
       </figcaption>
       <ol className="flex flex-col gap-2 px-4 py-5">
         {messages.map((m, i) => (
-          <li key={i} className="flex flex-col">
-            <Bubble message={m} />
+          <li key={i} className="relative flex flex-col" style={{ "--at": `${schedule[i]}ms` } as React.CSSProperties}>
+            {typed(m) && <Typing below={m.kind === "in" && !!m.from} />}
+            <div className="msg flex flex-col">
+              <Bubble message={m} />
+            </div>
           </li>
         ))}
       </ol>
     </figure>
+  );
+}
+
+// Someone else's message gets a typing bubble before it arrives.
+function typed(m: Message) {
+  return m.kind === "in" || m.kind === "file";
+}
+
+// When each message lands, in ms after the thread scrolls into view.
+function arrivals(messages: Message[]) {
+  let t = 500;
+  return messages.map((m) => {
+    if (typed(m)) t += 800;
+    const at = t;
+    t += m.kind === "out" ? 700 : 500;
+    return at;
+  });
+}
+
+function Typing({ below }: { below: boolean }) {
+  return (
+    <span
+      aria-hidden
+      className={`typing absolute left-0 inline-flex ${below ? "top-[18px]" : "top-0"} gap-1 rounded-2xl rounded-bl-md bg-sunk px-3.5 py-3`}
+    >
+      <span className="size-1.5 rounded-full bg-muted" />
+      <span className="size-1.5 rounded-full bg-muted" />
+      <span className="size-1.5 rounded-full bg-muted" />
+    </span>
   );
 }
 

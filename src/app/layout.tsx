@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { RevealScript } from "./motion";
+import { RevealOnScroll } from "./reveal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +37,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${serif.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <head>
+        <RevealScript />
+      </head>
+      <body className="flex min-h-full flex-col font-sans">
+        {children}
+        <RevealOnScroll />
+      </body>
     </html>
   );
 }

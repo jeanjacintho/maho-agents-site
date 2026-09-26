@@ -55,6 +55,87 @@ section[id] {
   scroll-margin-top: 5rem;
 }
 
+/* Scroll reveal. Hidden only when the inline script ran (html[data-reveal])
+   and the reader allows motion; reveal.tsx sets data-shown once in view. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-reveal] [data-reveal] {
+    opacity: 0;
+    translate: 0 12px;
+  }
+
+  html[data-reveal] [data-reveal][data-shown] {
+    opacity: 1;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  /* Example threads: messages arrive in order, with a typing bubble first. */
+  html[data-reveal] [data-thread] .msg {
+    opacity: 0;
+  }
+
+  html[data-reveal] [data-thread][data-shown] .msg {
+    animation: msg-in 400ms cubic-bezier(0.2, 0, 0, 1) var(--at) both;
+  }
+
+  html[data-reveal] [data-thread][data-shown] .typing {
+    animation: typing 800ms ease-out calc(var(--at) - 800ms) both;
+  }
+
+  html[data-reveal] [data-thread][data-shown] .typing span {
+    animation: typing-dot 600ms ease-in-out calc(var(--at) - 800ms) 2 both;
+  }
+
+  html[data-reveal] [data-thread][data-shown] .typing span:nth-child(2) {
+    animation-delay: calc(var(--at) - 650ms);
+  }
+
+  html[data-reveal] [data-thread][data-shown] .typing span:nth-child(3) {
+    animation-delay: calc(var(--at) - 500ms);
+  }
+}
+
+.typing {
+  opacity: 0;
+}
+
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes typing-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

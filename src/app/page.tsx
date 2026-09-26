@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { agent, agents, links, type Agent } from "./agents";
+import { reveal } from "./motion";
 import { Thread, type Message } from "./thread";
 
 const foundertimes = agent("thefoundertimes");
@@ -36,12 +37,12 @@ function Container({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{children}</p>;
+  return <p {...reveal(0)} className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{children}</p>;
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mt-3 max-w-3xl font-serif text-4xl leading-[1.1] tracking-tight text-balance sm:text-5xl">
+    <h2 {...reveal(1)} className="mt-3 max-w-3xl font-serif text-4xl leading-[1.1] tracking-tight text-balance sm:text-5xl">
       {children}
     </h2>
   );
@@ -100,14 +101,14 @@ function Hero() {
       <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
-          <h1 className="mt-5 font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-7xl">
+          <h1 {...reveal(1)} className="mt-5 font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-7xl">
             Agents that live where you already are.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             Text, email, group chat. They never make up what they can’t check, and they only act
             inside the rules you gave them.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div {...reveal(3)} className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#try"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-[opacity,scale] duration-150 ease-out hover:opacity-90 active:scale-[0.96]"
@@ -122,7 +123,7 @@ function Hero() {
         <ul className="grid grid-cols-3 gap-3 sm:gap-5" aria-label="The agents">
           {agents.map((a, i) => (
             <li key={a.id} className={i === 1 ? "translate-y-6" : ""}>
-              <a href={`#${a.anchor}`} className="group block text-center">
+              <a {...reveal(4 + i)} href={`#${a.anchor}`} className="group block text-center">
                 <Image
                   src={a.image}
                   alt=""
@@ -246,7 +247,7 @@ function Day() {
       <Container>
         <Eyebrow>A day with them</Eyebrow>
         <SectionTitle>Not a dashboard. A text thread you already check.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           The conversations below are illustrative examples — made-up names, not screenshots of real people.
         </p>
         <ol className="mt-16 flex flex-col gap-24">
@@ -256,7 +257,7 @@ function Day() {
               id={m.a.anchor}
               className="grid scroll-mt-20 grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16"
             >
-              <div className={i % 2 ? "lg:order-2" : ""}>
+              <div {...reveal(0)} className={i % 2 ? "lg:order-2" : ""}>
                 <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">
                   <span className="grid size-6 place-items-center rounded-full border border-line text-[10px]">
                     {i + 1}
@@ -326,7 +327,7 @@ function HowItWorks() {
         <SectionTitle>One pipeline under all three.</SectionTitle>
         <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="flex flex-col bg-surface p-6 sm:p-8">
+            <li key={s.title} {...reveal(i)} className="flex flex-col bg-surface p-6 sm:p-8">
               <span className="font-serif text-6xl leading-none">{i + 1}</span>
               <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
@@ -376,13 +377,13 @@ function Limits() {
       <Container>
         <Eyebrow>Transparency and limits</Eyebrow>
         <SectionTitle>The rules, in one place.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           Meetly books meetings without waiting for you. That’s the point — so the promise isn’t
           &ldquo;it never acts alone&rdquo;. It acts only inside your limits, and tells you after.
         </p>
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {limits.map((group) => (
-            <div key={group.title} className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
+          {limits.map((group, i) => (
+            <div key={group.title} {...reveal(i)} className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
               <h3 className="text-lg font-semibold tracking-tight">{group.title}</h3>
               <ul className="mt-5 flex flex-col gap-4">
                 {group.items.map((item, i) => (
@@ -416,13 +417,14 @@ function Proof() {
       <Container>
         <Eyebrow>Proof</Eyebrow>
         <SectionTitle>Real output, one per agent.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           Anonymized examples from real use will go here. Until then, this space stays empty on purpose.
         </p>
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
-          {proof.map(({ a, what }) => (
+          {proof.map(({ a, what }, i) => (
             <li
               key={a.id}
+              {...reveal(i)}
               className="flex min-h-56 flex-col md:aspect-[4/5] justify-between rounded-3xl border border-dashed border-line p-6"
             >
               <div className="flex items-center gap-3">
@@ -470,7 +472,7 @@ function RunsOnPlow() {
       <Container>
         <Eyebrow>Runs on Plow</Eyebrow>
         <SectionTitle>Built on a base you can read about.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           All three are{" "}
           <a href={links.openclaw} className="underline underline-offset-4">
             OpenClaw
@@ -478,8 +480,8 @@ function RunsOnPlow() {
           agents running on Plow.
         </p>
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
-          {base.map((b) => (
-            <li key={b.title}>
+          {base.map((b, i) => (
+            <li key={b.title} {...reveal(i)}>
               <a
                 href={b.href}
                 className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-[border-color] duration-150 ease-out hover:border-accent sm:p-8"
@@ -506,10 +508,10 @@ function TryThem() {
       <Container>
         <Eyebrow>Try them</Eyebrow>
         <SectionTitle>Each one has a page on the Agent Index.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
-          {agents.map((a) => (
-            <li key={a.id} className="flex flex-col items-start rounded-3xl border border-line bg-background p-6 sm:p-8">
+          {agents.map((a, i) => (
+            <li key={a.id} {...reveal(i)} className="flex flex-col items-start rounded-3xl border border-line bg-background p-6 sm:p-8">
               <Image src={a.image} alt="" width={72} height={72} className="size-18 rounded-full outline-1 -outline-offset-1 outline-black/10" />
               <h3 className="mt-5 text-xl font-semibold tracking-tight">{a.name}</h3>
               <p className="mt-2 flex-1 leading-relaxed text-muted">{a.tagline}</p>
@@ -532,10 +534,10 @@ function FinalCta() {
   return (
     <section className="py-24 sm:py-32">
       <Container className="flex flex-col items-center text-center">
-        <h2 className="max-w-3xl font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-6xl">
+        <h2 {...reveal(0)} className="max-w-3xl font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-6xl">
           Your paper, your calendar, your reputation — <em>on a text thread.</em>
         </h2>
-        <ul className="mt-10 flex flex-wrap justify-center gap-3">
+        <ul {...reveal(1)} className="mt-10 flex flex-wrap justify-center gap-3">
           {agents.map((a) => (
             <li key={a.id}>
               <IndexButton a={a}>{a.name}</IndexButton>
@@ -543,6 +545,7 @@ function FinalCta() {
           ))}
         </ul>
         <a
+          {...reveal(2)}
           href={links.github}
           className="mt-6 text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
         >
