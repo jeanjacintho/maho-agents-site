@@ -212,8 +212,8 @@ section[id] {
   }
 }
 
-/* The "Click here" note: after the third notification lands, the words
-   fade in and the arrow draws itself. */
+/* The "Click a notification" note: as the first notification lands, the
+   words fade in and the arrow draws itself. */
 @media (prefers-reduced-motion: no-preference) {
   html[data-reveal] .hint {
     opacity: 0;
@@ -230,17 +230,17 @@ section[id] {
 
   html[data-reveal] .lock[data-shown] ~ .hint {
     opacity: 1;
-    transition: opacity 400ms ease-out 3000ms;
+    transition: opacity 400ms ease-out 700ms;
   }
 
   html[data-reveal] .lock[data-shown] ~ .hint .hint-stroke {
     stroke-dashoffset: 0;
-    transition: stroke-dashoffset 800ms cubic-bezier(0.2, 0, 0, 1) 3300ms;
+    transition: stroke-dashoffset 700ms cubic-bezier(0.2, 0, 0, 1) 900ms;
   }
 
   html[data-reveal] .lock[data-shown] ~ .hint .hint-head {
     opacity: 1;
-    transition: opacity 150ms ease-out 4000ms;
+    transition: opacity 150ms ease-out 1550ms;
   }
 }
 

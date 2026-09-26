@@ -64,7 +64,7 @@ export function LockScreen() {
       {/* Hand-drawn note pointing at the notifications, which are links.
           Only where there is room beside the phone. */}
       <span aria-hidden className="hint absolute right-full bottom-[22%] mr-3 hidden w-36 flex-col items-center xl:flex">
-        <span className="font-hand -rotate-6 text-3xl leading-none text-foreground">Click here</span>
+        <span className="font-hand -rotate-6 text-center text-3xl leading-[0.95] text-foreground">Click a notification</span>
         <svg viewBox="0 0 100 110" className="mt-1 ml-10 h-24 w-auto text-accent" fill="none">
           <path
             className="hint-stroke"
