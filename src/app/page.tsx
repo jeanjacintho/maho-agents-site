@@ -19,14 +19,22 @@ export default function Home() {
       </a>
       <Nav />
       <main id="main" className="flex flex-1 flex-col">
-        <Hero />
-        <Day />
-        <Ecosystem />
-        <HowItWorks />
-        <Limits />
-        <Proof />
-        <RunsOnPlow />
-        <TryThem />
+        <div className="relative">
+          <Rails />
+          <Hero />
+          <Chapter n="01" title="Meet the agents" />
+          <Day />
+          <Ecosystem />
+          <Chapter n="02" title="Why you can trust them" />
+          <div className="bg-surface">
+            <HowItWorks />
+            <Limits />
+            <Proof />
+          </div>
+          <Chapter n="03" title="Get started" />
+          <RunsOnPlow />
+          <TryThem />
+        </div>
         <FinalCta />
       </main>
       <Footer />
@@ -42,11 +50,76 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p {...reveal(0)} className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{children}</p>;
 }
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
+// Chapter 1 titles are the large step; supporting sections one step down.
+function SectionTitle({ size = "md", children }: { size?: "lg" | "md"; children: React.ReactNode }) {
   return (
-    <h2 {...reveal(1)} className="mt-3 max-w-3xl font-display text-4xl leading-[1.1] text-balance sm:text-5xl">
+    <h2
+      {...reveal(1)}
+      className={`mt-3 max-w-3xl font-display leading-[1.1] text-balance ${
+        size === "lg" ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"
+      }`}
+    >
       {children}
     </h2>
+  );
+}
+
+// Primary section header: title on the left, intro on the right (desktop).
+function SectionHeader({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:items-end lg:gap-16">
+      <div>
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <SectionTitle size="lg">{title}</SectionTitle>
+      </div>
+      <div {...reveal(2)} className="max-w-xl leading-relaxed text-muted lg:pb-1">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// Faint rails at the content edges, desktop only; chapters cross them.
+function Rails() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
+      <div className="mx-auto h-full max-w-6xl border-x border-line" />
+    </div>
+  );
+}
+
+// A small plus where a chapter line crosses a rail.
+function Cross({ className }: { className: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 11 11" className={`absolute z-20 hidden size-[11px] text-accent/60 lg:block ${className}`}>
+      <path d="M5.5 0v11M0 5.5h11" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+// The only hard break on the page: between chapters, a hatched strip with
+// the chapter's name. Sections inside a chapter are separated by space.
+function Chapter({ n, title }: { n: string; title: string }) {
+  return (
+    <div className="border-y border-line bg-background">
+      <div className="relative mx-auto flex h-14 max-w-6xl items-center bg-[repeating-linear-gradient(135deg,var(--line)_0_1px,transparent_1px_10px)] px-4 sm:px-6">
+        <p className="rounded-full border border-line bg-background px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
+          <span className="text-muted">{n}</span> {title}
+        </p>
+        <Cross className="top-0 left-0 -translate-x-1/2 -translate-y-1/2" />
+        <Cross className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
+        <Cross className="bottom-0 left-0 -translate-x-1/2 translate-y-1/2" />
+        <Cross className="right-0 bottom-0 translate-x-1/2 translate-y-1/2" />
+      </div>
+    </div>
   );
 }
 
@@ -122,7 +195,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="overflow-x-clip border-b border-line">
+    <section id="top" className="overflow-x-clip">
       <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
@@ -252,15 +325,18 @@ const day: Moment[] = [
 
 function Day() {
   return (
-    <section id="day" className="border-b border-line py-20 sm:py-28">
+    <section id="day" className="py-20 sm:py-28">
       <Container>
-        <Eyebrow>A day with them</Eyebrow>
-        <SectionTitle>
-          Not a dashboard. A text thread <Mark>you already check</Mark>.
-        </SectionTitle>
-        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
-          The conversations below are illustrative examples — made-up names, not screenshots of real people.
-        </p>
+        <SectionHeader
+          eyebrow="A day with them"
+          title={
+            <>
+              Not a dashboard. A text thread <Mark>you already check</Mark>.
+            </>
+          }
+        >
+          <p>The conversations below are illustrative examples — made-up names, not screenshots of real people.</p>
+        </SectionHeader>
         <ol className="mt-16 flex flex-col gap-24">
           {day.map((m, i) => (
             <li
@@ -375,18 +451,23 @@ const ecosystemDelays = ecosystem.map((_, i) =>
 
 function Ecosystem() {
   return (
-    <section id="ecosystem" className="border-b border-line bg-surface py-20 sm:py-28">
+    <section id="ecosystem" className="pt-4 pb-20 sm:pb-28">
       <Container>
-        <Eyebrow>The ecosystem</Eyebrow>
-        <SectionTitle>
-          A partner reaches out on X. By Wednesday, <Mark>you’re ready</Mark>.
-        </SectionTitle>
-        <p {...reveal(2)} className="mt-4 max-w-2xl leading-relaxed text-muted">
-          AHA spots the post in your daily digest. You ask Meetly to reach out, and it books the call. The next
-          morning, The Founder Times puts the meeting first on your advisor desk — each agent in its own lane,
-          with you deciding in between.
-        </p>
-        <p {...reveal(3)} className="mt-6 pl-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+        <SectionHeader
+          eyebrow="The ecosystem"
+          title={
+            <>
+              A partner reaches out on X. By Wednesday, <Mark>you’re ready</Mark>.
+            </>
+          }
+        >
+          <p>
+            AHA spots the post in your daily digest. You ask Meetly to reach out, and it books the call. The next
+            morning, The Founder Times puts the meeting first on your advisor desk — each agent in its own lane,
+            with you deciding in between.
+          </p>
+        </SectionHeader>
+        <p {...reveal(3)} className="mt-10 pl-1 font-mono text-[10px] uppercase tracking-wider text-muted">
           Example
         </p>
         <ol className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -441,15 +522,15 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section id="how" className="border-b border-line bg-surface py-20 sm:py-28">
+    <section id="how" className="pt-16 pb-12 sm:pt-20 sm:pb-14">
       <Container>
         <Eyebrow>How it works</Eyebrow>
         <SectionTitle>
           One pipeline <Mark>under all three</Mark>.
         </SectionTitle>
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={s.title} {...reveal(i)} className="flex flex-col bg-surface p-6 sm:p-8">
+            <li key={s.title} {...reveal(i)} className="flex flex-col bg-background p-6 sm:p-8">
               <span className="font-display text-6xl leading-none text-accent">{i + 1}</span>
               <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
@@ -495,7 +576,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
 
 function Limits() {
   return (
-    <section id="limits" className="border-b border-line py-20 sm:py-28">
+    <section id="limits" className="py-12 sm:py-14">
       <Container>
         <Eyebrow>Transparency and limits</Eyebrow>
         <SectionTitle>
@@ -505,9 +586,9 @@ function Limits() {
           Meetly books meetings without waiting for you. That’s the point — so the promise isn’t
           &ldquo;it never acts alone&rdquo;. It acts only inside your limits, and tells you after.
         </p>
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {limits.map((group, i) => (
-            <div key={group.title} {...reveal(i)} className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
+            <div key={group.title} {...reveal(i)} className="rounded-3xl border border-line bg-background p-6 sm:p-8">
               <h3 className="text-lg font-semibold tracking-tight">{group.title}</h3>
               <ul className="mt-5 flex flex-col gap-4">
                 {group.items.map((item, i) => (
@@ -537,7 +618,7 @@ const proof = [
 
 function Proof() {
   return (
-    <section id="proof" className="border-b border-line bg-surface py-20 sm:py-28">
+    <section id="proof" className="pt-12 pb-16 sm:pt-14 sm:pb-20">
       <Container>
         <Eyebrow>Proof</Eyebrow>
         <SectionTitle>
@@ -546,12 +627,12 @@ function Proof() {
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
           Anonymized examples from real use will go here. Until then, this space stays empty on purpose.
         </p>
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
           {proof.map(({ a, what }, i) => (
             <li
               key={a.id}
               {...reveal(i)}
-              className="flex min-h-56 flex-col md:aspect-[4/5] justify-between rounded-3xl border border-dashed border-line p-6"
+              className="flex min-h-40 flex-col justify-between rounded-3xl border border-dashed border-accent/30 p-6"
             >
               <div className="flex items-center gap-3">
                 <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10" />
@@ -594,7 +675,7 @@ const base = [
 
 function RunsOnPlow() {
   return (
-    <section id="base" className="border-b border-line py-20 sm:py-28">
+    <section id="base" className="pt-16 pb-12 sm:pt-20 sm:pb-14">
       <Container>
         <Eyebrow>Runs on Plow</Eyebrow>
         <SectionTitle>
@@ -607,7 +688,7 @@ function RunsOnPlow() {
           </a>{" "}
           agents running on Plow.
         </p>
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
           {base.map((b, i) => (
             <li key={b.title} {...reveal(i)}>
               <a
@@ -632,14 +713,14 @@ function RunsOnPlow() {
 
 function TryThem() {
   return (
-    <section id="try" className="border-b border-line bg-surface py-20 sm:py-28">
+    <section id="try" className="pt-12 pb-20 sm:pt-14 sm:pb-28">
       <Container>
         <Eyebrow>Try them</Eyebrow>
         <SectionTitle>
           Each one has a page on the <Mark>Agent Index</Mark>.
         </SectionTitle>
         <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
           {agents.map((a, i) => (
             <li key={a.id} {...reveal(i)} className="flex flex-col items-start rounded-3xl border border-line bg-background p-6 sm:p-8">
               <Image src={a.image} alt="" width={72} height={72} className="size-18 rounded-full outline-1 -outline-offset-1 outline-black/10" />

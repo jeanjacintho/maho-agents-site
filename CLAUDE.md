@@ -127,6 +127,13 @@ three agents in plain text.
 - Purple has two jobs: actions (buttons, links) and emphasis in display type
   and markers — the lilac highlighter behind headline keywords (`<Mark>`),
   section eyebrows, step numbers and bullets. Never color body text purple.
-  Alternate sections use the lilac `--surface`; the final CTA is the one dark
+  Chapter 2 sits on the lilac `--surface`; the final CTA is the one dark
   purple band.
+- The page reads in three chapters — 01 Meet the agents (A day with them,
+  The ecosystem), 02 Why you can trust them (How it works, Transparency,
+  Proof), 03 Get started (Runs on Plow, Try them) — then the final CTA.
+  Only chapters get a hard break (a hatched strip with the chapter name,
+  lilac crosses where it meets the desktop-only side rails); sections inside
+  a chapter are separated by space. Chapter 1 titles are one size larger and
+  use a two-column header on desktop.
 - Run `npm run lint` and `npm run build` before each commit.
