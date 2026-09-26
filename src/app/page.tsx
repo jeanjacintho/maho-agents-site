@@ -9,8 +9,14 @@ const aha = agent("aha");
 export default function Home() {
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only z-30 rounded-full bg-foreground text-sm font-medium text-background focus:not-sr-only focus:fixed focus:top-3 focus:left-4 focus:px-4 focus:py-2"
+      >
+        Skip to content
+      </a>
       <Nav />
-      <main className="flex flex-1 flex-col">
+      <main id="main" className="flex flex-1 flex-col">
         <Hero />
         <Day />
         <HowItWorks />
@@ -35,19 +41,20 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mt-3 max-w-3xl font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl">
+    <h2 className="mt-3 max-w-3xl font-serif text-4xl leading-[1.1] tracking-tight text-balance sm:text-5xl">
       {children}
     </h2>
   );
 }
 
-function IndexButton({ a, label }: { a: Agent; label?: string }) {
+// Outlined, so the hero keeps the page's only filled action.
+const outlineButton =
+  "inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
+
+function IndexButton({ a, children }: { a: Agent; children: React.ReactNode }) {
   return (
-    <a
-      href={a.index}
-      className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
-    >
-      {label ?? `${a.name} on the Agent Index`}
+    <a href={a.index} className={outlineButton}>
+      {children}
       <span aria-hidden>→</span>
     </a>
   );
@@ -75,7 +82,7 @@ function Nav() {
           </a>
           <a
             href="#try"
-            className="rounded-full bg-accent px-3.5 py-1.5 font-medium text-accent-ink hover:opacity-90"
+            className="rounded-full border border-accent px-3.5 py-1.5 font-medium text-accent transition-[background-color,color] duration-150 ease-out hover:bg-accent hover:text-accent-ink"
           >
             Try them
           </a>
@@ -93,17 +100,17 @@ function Hero() {
       <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div>
           <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
-          <h1 className="mt-5 font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl">
+          <h1 className="mt-5 font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-7xl">
             Agents that live where you already are.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-            Text, email, group chat. They never make up what they can&apos;t check, and they only act
+            Text, email, group chat. They never make up what they can’t check, and they only act
             inside the rules you gave them.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#try"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-[opacity,scale] duration-150 ease-out hover:opacity-90 active:scale-[0.96]"
             >
               See them on the Agent Index <span aria-hidden>↓</span>
             </a>
@@ -118,11 +125,11 @@ function Hero() {
               <a href={`#${a.anchor}`} className="group block text-center">
                 <Image
                   src={a.image}
-                  alt={`${a.name} avatar`}
+                  alt=""
                   width={220}
                   height={220}
                   preload
-                  className="aspect-square w-full rounded-full border border-line object-cover transition-transform group-hover:-rotate-3"
+                  className="aspect-square w-full rounded-full object-cover outline-1 -outline-offset-1 outline-black/10 motion-safe:transition-transform motion-safe:group-hover:-rotate-3"
                 />
                 <span className="mt-3 block text-sm font-medium">{a.name}</span>
               </a>
@@ -138,14 +145,14 @@ function Hero() {
 
 const foundertimesThread: Message[] = [
   { kind: "time", text: "Tue 07:00 · the hour you set" },
-  { kind: "in", text: "Good morning. Today's edition is in the printer tray, and here in chat." },
-  { kind: "file", name: "The Founder Times — Tue 29 Sep.pdf", detail: "Letter · advisor's desk, weather, calendar, 3 stories" },
+  { kind: "in", text: "Good morning. Today’s edition is in the printer tray, and here in chat." },
+  { kind: "file", name: "The Founder Times — Tue 29 Sep.pdf", detail: "Letter · advisor’s desk, weather, calendar, 3 stories" },
   {
     kind: "in",
-    text: "Front page: three ranked recommendations, each sourced and challenged by the critics. One page wouldn't load — the paper says so instead of filling the gap.",
+    text: "Front page: three ranked recommendations, each sourced and challenged by the critics. One page wouldn’t load — the paper says so instead of filling the gap.",
   },
-  { kind: "out", text: "put the iPhone price in tomorrow's paper" },
-  { kind: "in", text: "Noted — it runs in tomorrow's edition only." },
+  { kind: "out", text: "put the iPhone price in tomorrow’s paper" },
+  { kind: "in", text: "Noted — it runs in tomorrow’s edition only." },
 ];
 
 const meetlyThread: Message[] = [
@@ -155,7 +162,7 @@ const meetlyThread: Message[] = [
   {
     kind: "in",
     from: "Meetly",
-    text: "Hi Ana — I'm Meetly, Sam's scheduling assistant. Sam is free Tue 29/9 at 12:00, Wed 30/9 at 15:00 or Thu 1/10 at 10:00. Which works?",
+    text: "Hi Ana — I’m Meetly, Sam’s scheduling assistant. Sam is free Tue 29/9 at 12:00, Wed 30/9 at 15:00 or Thu 1/10 at 10:00. Which works?",
   },
   { kind: "in", from: "Ana", text: "wed at 3 works" },
   {
@@ -163,7 +170,7 @@ const meetlyThread: Message[] = [
     from: "Meetly",
     text: "Booked: Wed 30/9 at 15:00. Invite sent. The other two times are released.",
   },
-  { kind: "note", text: "Later, in Sam's DM" },
+  { kind: "note", text: "Later, in Sam’s DM" },
   {
     kind: "in",
     from: "Meetly",
@@ -175,7 +182,7 @@ const ahaThread: Message[] = [
   { kind: "time", text: "Tue 18:00 · the hour you set" },
   {
     kind: "in",
-    text: "Daily digest for Acme — 3 new mentions.\n\nHacker News (2)\n• A Show HN thread about Acme, most comments on pricing\n• A comment comparing Acme to a competitor\n\nAgent Index (1)\n• A new comment on Acme's listing asking about setup",
+    text: "Daily digest for Acme — 3 new mentions.\n\nHacker News (2)\n• A Show HN thread about Acme, most comments on pricing\n• A comment comparing Acme to a competitor\n\nAgent Index (1)\n• A new comment on Acme’s listing asking about setup",
   },
   { kind: "out", text: "thanks" },
 ];
@@ -196,7 +203,7 @@ const day: Moment[] = [
     lead: "The paper is waiting when you wake up.",
     body: (
       <>
-        It opens with an advisor&apos;s three ranked, sourced recommendations, challenged by independent
+        It opens with an advisor’s three ranked, sourced recommendations, challenged by independent
         critics; then weather, one calendar rail, and up to three stories you asked it to cover. Research
         runs in your own browser. It reports only: no purchases, bookings, logins or downloads.
       </>
@@ -207,7 +214,7 @@ const day: Moment[] = [
   {
     a: meetly,
     when: "During the day",
-    lead: "Someone asks for coffee. It's booked before you look.",
+    lead: "Someone asks for coffee. It’s booked before you look.",
     body: (
       <>
         Every five minutes Meetly reads your new iMessages. When someone wants to meet, it opens a group with
@@ -247,17 +254,17 @@ function Day() {
             <li
               key={m.a.id}
               id={m.a.anchor}
-              className="grid scroll-mt-20 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16"
+              className="grid scroll-mt-20 grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16"
             >
               <div className={i % 2 ? "lg:order-2" : ""}>
                 <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                  <span className="grid size-6 place-items-center rounded-full border border-line text-[10px]">
+                  <span className="grid size-6 place-items-center rounded-full border border-line text-xs tracking-normal">
                     {i + 1}
                   </span>
                   {m.when}
                 </p>
                 <h3 className="mt-4 flex items-center gap-3 text-2xl font-semibold tracking-tight">
-                  <Image src={m.a.image} alt="" width={40} height={40} className="size-10 rounded-full" />
+                  <Image src={m.a.image} alt="" width={40} height={40} className="size-10 rounded-full outline-1 -outline-offset-1 outline-black/10" />
                   {m.a.name}
                 </h3>
                 <p className="mt-4 font-serif text-3xl leading-tight text-balance">{m.lead}</p>
@@ -320,7 +327,7 @@ function HowItWorks() {
         <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title} className="flex flex-col bg-surface p-6 sm:p-8">
-              <span className="font-serif text-6xl leading-none text-accent">{i + 1}</span>
+              <span className="font-serif text-6xl leading-none">{i + 1}</span>
               <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
             </li>
@@ -338,7 +345,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
     title: "What it knows",
     items: [
       "A labeled signal is never accepted as fact without critique.",
-      "A page that didn't load is said, not invented.",
+      "A page that didn’t load is said, not invented.",
       "Network errors, or your Mac being offline, are reported — never hidden.",
     ],
   },
@@ -357,7 +364,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
   {
     title: "What stays with you",
     items: [
-      "Purchases, logins, downloads and sends outside an agent's scope.",
+      "Purchases, logins, downloads and sends outside an agent’s scope.",
       "Anything past the limits you set comes back to you before it happens.",
     ],
   },
@@ -370,7 +377,7 @@ function Limits() {
         <Eyebrow>Transparency and limits</Eyebrow>
         <SectionTitle>The rules, in one place.</SectionTitle>
         <p className="mt-4 max-w-2xl text-muted">
-          Meetly books meetings without waiting for you. That&apos;s the point — so the promise isn&apos;t
+          Meetly books meetings without waiting for you. That’s the point — so the promise isn’t
           &ldquo;it never acts alone&rdquo;. It acts only inside your limits, and tells you after.
         </p>
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -380,7 +387,7 @@ function Limits() {
               <ul className="mt-5 flex flex-col gap-4">
                 {group.items.map((item, i) => (
                   <li key={i} className="flex gap-3 leading-relaxed">
-                    <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
+                    <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-muted" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -419,7 +426,7 @@ function Proof() {
               className="flex min-h-56 flex-col md:aspect-[4/5] justify-between rounded-3xl border border-dashed border-line p-6"
             >
               <div className="flex items-center gap-3">
-                <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full" />
+                <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10" />
                 <span className="font-medium">{a.name}</span>
               </div>
               <div>
@@ -445,7 +452,7 @@ const base = [
   },
   {
     title: "Latch, on your Mac",
-    body: "Runs on your Mac, signed in to your Plow account. It's how the agents reach your browser, Messages, Calendar and printer.",
+    body: "Runs on your Mac, signed in to your Plow account. It’s how the agents reach your browser, Messages, Calendar and printer.",
     href: links.latch,
     cta: "Latch docs",
   },
@@ -475,12 +482,12 @@ function RunsOnPlow() {
             <li key={b.title}>
               <a
                 href={b.href}
-                className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-accent sm:p-8"
+                className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-[border-color] duration-150 ease-out hover:border-accent sm:p-8"
               >
                 <h3 className="text-lg font-semibold tracking-tight">{b.title}</h3>
                 <p className="mt-2 flex-1 leading-relaxed text-muted">{b.body}</p>
                 <span className="mt-6 text-sm font-medium">
-                  {b.cta} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                  {b.cta} <span aria-hidden className="inline-block motion-safe:transition-transform motion-safe:group-hover:translate-x-1">→</span>
                 </span>
               </a>
             </li>
@@ -499,15 +506,17 @@ function TryThem() {
       <Container>
         <Eyebrow>Try them</Eyebrow>
         <SectionTitle>Each one has a page on the Agent Index.</SectionTitle>
-        <p className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you&apos;d text first.</p>
+        <p className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
           {agents.map((a) => (
             <li key={a.id} className="flex flex-col items-start rounded-3xl border border-line bg-background p-6 sm:p-8">
-              <Image src={a.image} alt="" width={72} height={72} className="size-18 rounded-full border border-line" />
+              <Image src={a.image} alt="" width={72} height={72} className="size-18 rounded-full outline-1 -outline-offset-1 outline-black/10" />
               <h3 className="mt-5 text-xl font-semibold tracking-tight">{a.name}</h3>
               <p className="mt-2 flex-1 leading-relaxed text-muted">{a.tagline}</p>
               <div className="mt-6">
-                <IndexButton a={a} label="Open on the Agent Index" />
+                <IndexButton a={a}>
+                  Open on the Agent Index<span className="sr-only">: {a.name}</span>
+                </IndexButton>
               </div>
             </li>
           ))}
@@ -523,13 +532,13 @@ function FinalCta() {
   return (
     <section className="py-24 sm:py-32">
       <Container className="flex flex-col items-center text-center">
-        <h2 className="max-w-3xl font-serif text-5xl leading-[1] tracking-tight text-balance sm:text-6xl">
+        <h2 className="max-w-3xl font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-6xl">
           Your paper, your calendar, your reputation — <em>on a text thread.</em>
         </h2>
         <ul className="mt-10 flex flex-wrap justify-center gap-3">
           {agents.map((a) => (
             <li key={a.id}>
-              <IndexButton a={a} label={a.name} />
+              <IndexButton a={a}>{a.name}</IndexButton>
             </li>
           ))}
         </ul>
@@ -564,12 +573,12 @@ function Footer() {
               <ul className="mt-2 flex flex-col gap-1.5 text-muted">
                 <li>
                   <a href={a.repo} className="hover:text-foreground">
-                    Source on GitHub
+                    Source on GitHub<span className="sr-only">: {a.name}</span>
                   </a>
                 </li>
                 <li>
                   <a href={a.index} className="hover:text-foreground">
-                    Agent Index page
+                    Agent Index page<span className="sr-only">: {a.name}</span>
                   </a>
                 </li>
                 {a.license && <li>{a.license}</li>}
