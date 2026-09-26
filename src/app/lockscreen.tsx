@@ -61,6 +61,30 @@ export function LockScreen() {
           <span aria-hidden className="mx-auto mt-4 h-1 w-28 rounded-full bg-white/80" />
         </div>
       </div>
+      {/* Hand-drawn note pointing at the notifications, which are links.
+          Only where there is room beside the phone. */}
+      <span aria-hidden className="hint absolute right-full bottom-[22%] mr-3 hidden w-36 flex-col items-center xl:flex">
+        <span className="font-hand -rotate-6 text-3xl leading-none text-foreground">Click here</span>
+        <svg viewBox="0 0 100 110" className="mt-1 ml-10 h-24 w-auto text-accent" fill="none">
+          <path
+            className="hint-stroke"
+            pathLength="1"
+            d="M22 4c8 18 22 24 18 40-3 13-20 12-17 0 3-11 22-6 32 8 12 17 18 36 36 46"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            className="hint-head"
+            d="M91 98l-13 1m13-1-6-11"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
     </figure>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Epilogue, Geist, Geist_Mono } from "next/font/google";
+import { Epilogue, Geist, Geist_Mono, Gochi_Hand } from "next/font/google";
 import "./globals.css";
 import { RevealScript } from "./motion";
 import { RevealOnScroll } from "./reveal";
@@ -22,6 +22,13 @@ const display = Epilogue({
   style: ["normal", "italic"],
 });
 
+// Handwritten note beside the hero phone.
+const hand = Gochi_Hand({
+  variable: "--font-gochi",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Maho — agents that live on your text thread",
   description:
@@ -39,7 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${hand.variable} h-full antialiased`}
     >
       <head>
         <RevealScript />
