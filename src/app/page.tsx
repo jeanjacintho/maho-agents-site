@@ -103,7 +103,7 @@ function Hero() {
           <h1 className="mt-5 font-serif text-5xl leading-[1.1] tracking-tight text-balance sm:text-7xl">
             Agents that live where you already are.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             Text, email, group chat. They never make up what they can’t check, and they only act
             inside the rules you gave them.
           </p>
