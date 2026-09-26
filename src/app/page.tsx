@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { agent, agents, links, type Agent } from "./agents";
+import { LockScreen } from "./lockscreen";
 import { reveal } from "./motion";
 import { Thread, type Message } from "./thread";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <main id="main" className="flex flex-1 flex-col">
         <Hero />
         <Day />
+        <Ecosystem />
         <HowItWorks />
         <Limits />
         <Proof />
@@ -134,23 +136,7 @@ function Hero() {
             </a>
           </div>
         </div>
-        <ul className="grid grid-cols-3 gap-3 sm:gap-5" aria-label="The agents">
-          {agents.map((a, i) => (
-            <li key={a.id} className={i === 1 ? "translate-y-6" : ""}>
-              <a {...reveal(4 + i)} href={`#${a.anchor}`} className="group block text-center">
-                <Image
-                  src={a.image}
-                  alt=""
-                  width={220}
-                  height={220}
-                  preload
-                  className="aspect-square w-full rounded-full object-cover outline-1 -outline-offset-1 outline-black/10 motion-safe:transition-transform motion-safe:group-hover:-rotate-3"
-                />
-                <span className="mt-3 block text-sm font-medium">{a.name}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <LockScreen />
       </Container>
     </section>
   );
@@ -307,6 +293,83 @@ function Day() {
             </li>
           ))}
         </ol>
+      </Container>
+    </section>
+  );
+}
+
+/* 3b. The ecosystem: AHA and The Founder Times in one group */
+
+// TODO(owner): not in the READMEs yet. Per the owner, AHA and The Founder
+// Times can share a group, and what's said there reaches the next edition's
+// advisor desk; The Founder Times stays quiet in the group.
+const ecosystemThread: Message[] = [
+  { kind: "time", text: "Tue 18:00" },
+  {
+    kind: "in",
+    from: "AHA",
+    text: "Daily digest for Acme — 3 new mentions.\n• A Show HN thread about Acme, 41 comments, most on pricing\n• Two Agent Index comments asking how pricing works",
+  },
+  { kind: "out", text: "pricing is confusing people. let’s make it tomorrow’s priority" },
+  { kind: "note", text: "Wed 07:00 · in Sam’s DM" },
+  {
+    kind: "in",
+    from: "The Founder Times",
+    text: "Today’s edition is in the tray. #1 on the advisor’s desk: clarify the pricing page — from AHA’s digest and your note in Acme HQ.",
+  },
+  {
+    kind: "file",
+    from: "The Founder Times",
+    name: "The Founder Times — Wed 30 Sep.pdf",
+    detail: "Letter · advisor’s desk, weather, calendar",
+  },
+  { kind: "note", text: "Later, Sam asks Meetly for time with Ana" },
+  { kind: "in", from: "Meetly", text: "Booked: Thu 1/10 at 10:00 with Ana — pricing review. Invite sent." },
+];
+
+function Ecosystem() {
+  return (
+    <section id="ecosystem" className="border-b border-line bg-surface py-20 sm:py-28">
+      <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div>
+          <Eyebrow>The ecosystem</Eyebrow>
+          <SectionTitle>AHA hears it. You weigh in. Tomorrow’s paper puts it first.</SectionTitle>
+          <p {...reveal(2)} className="mt-4 max-w-xl leading-relaxed text-muted">
+            Put AHA and The Founder Times in one group. AHA posts what the public said about you, the people in
+            the group react, and The Founder Times listens without a word — then ranks it on the next
+            edition’s advisor desk. Meetly books the follow-up from your DM.
+          </p>
+          <ol {...reveal(3)} className="mt-8 flex flex-col gap-3">
+            {[
+              [aha, "hears what the public says"],
+              [foundertimes, "turns the group’s reaction into tomorrow’s priority"],
+              [meetly, "books the meeting that follows"],
+            ].map(([a, what]) => (
+              <li key={(a as Agent).id} className="flex items-center gap-3">
+                <Image
+                  src={(a as Agent).image}
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10"
+                />
+                <span>
+                  <span className="font-medium">{(a as Agent).name}</span>{" "}
+                  <span className="text-muted">{what as string}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="mx-auto w-full max-w-md">
+          <Thread
+            title="Acme HQ"
+            image={aha.image}
+            images={[aha.image, foundertimes.image]}
+            people={2}
+            messages={ecosystemThread}
+          />
+        </div>
       </Container>
     </section>
   );

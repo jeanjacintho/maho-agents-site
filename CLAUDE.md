@@ -58,6 +58,9 @@ linked as the base Maho runs on.
 1. **Nav** — "Maho", anchors to the three agents, GitHub.
 2. **Hero** — thesis + one line "Three agents, one base: Plow + OpenClaw".
    CTA "See them on the Agent Index" scrolls to section 8.
+   Beside it, an illustrative iPhone lock screen with one day of
+   notifications from the three agents (07:00, 10:15, 18:00), each linking to
+   its section.
 3. **The ecosystem as conversations** — like plow.co/build's templates: one
    realistic text exchange per agent (not cards), in the order of a day, with
    the connectors it uses listed underneath.
@@ -70,6 +73,12 @@ linked as the base Maho runs on.
    - Evening — AHA: the daily digest. Hacker News, Agent Index.
    Conversations are illustrative; make them clearly examples, never fake
    screenshots of real people.
+3b. **The ecosystem** — an "Acme HQ" group with Sam (the owner), AHA and The
+   Founder Times: AHA posts the digest, Sam reacts, The Founder Times stays
+   silent in the group and puts it first on the next morning's advisor desk
+   (in Sam's DM); Meetly books the follow-up from the DM. Per the owner, not
+   yet in the READMEs: AHA and The Founder Times can share a group, and what's
+   said there reaches the next edition. Meetly does not join that group.
 4. **How it works** — numbered pipeline shared by all three:
    1. It listens (chat, email, iMessage, groups, the public web).
    2. It decides what matters (recommendations challenged by critics, not the

@@ -4,7 +4,7 @@ import { reveal } from "./motion";
 export type Message =
   | { kind: "in"; text: string; from?: string }
   | { kind: "out"; text: string }
-  | { kind: "file"; name: string; detail: string }
+  | { kind: "file"; name: string; detail: string; from?: string }
   | { kind: "note"; text: string }
   | { kind: "time"; text: string };
 
@@ -13,11 +13,14 @@ export type Message =
 export function Thread({
   title,
   image,
+  images,
   people,
   messages,
 }: {
   title: string;
   image: string;
+  /** A group's members, drawn as overlapping avatars in place of `image`. */
+  images?: string[];
   /** Set for a group: how many other people are in it ("2 People"). */
   people?: number;
   messages: Message[];
@@ -39,8 +42,23 @@ export function Thread({
           </span>
           <div className="flex flex-col items-center">
             <span className="relative">
-              <Image src={image} alt="" width={64} height={64} className="size-16 rounded-full outline-1 -outline-offset-1 outline-black/10" />
-              {people && (
+              {images ? (
+                <span className="flex">
+                  {images.map((src, k) => (
+                    <Image
+                      key={src}
+                      src={src}
+                      alt=""
+                      width={52}
+                      height={52}
+                      className={`size-13 rounded-full ring-2 ring-white ${k ? "-ml-4 mt-3" : ""}`}
+                    />
+                  ))}
+                </span>
+              ) : (
+                <Image src={image} alt="" width={64} height={64} className="size-16 rounded-full outline-1 -outline-offset-1 outline-black/10" />
+              )}
+              {people && !images && (
                 <span aria-hidden className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-linear-to-b from-[#96a1c0] to-[#6e7a9c] ring-2 ring-white">
                   <svg viewBox="0 0 16 16" className="size-3.5 fill-white">
                     <circle cx="8" cy="5.5" r="3" />
@@ -50,7 +68,7 @@ export function Thread({
               )}
             </span>
             <p className="glass -mt-1.5 flex items-center gap-1 rounded-full px-3 py-1 text-[15px] font-bold tracking-tight">
-              {people ? `${people} People` : title}
+              {people && !images ? `${people} People` : title}
               <svg aria-hidden viewBox="0 0 8 12" className="h-2.5 w-auto text-muted">
                 <path d="m2 1 4 5-4 5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -74,7 +92,7 @@ export function Thread({
           {messages.map((m, i) => {
             const starts = side(m) !== side(messages[i - 1]);
             const tail = side(m) !== side(messages[i + 1]);
-            const named = m.kind === "in" && !!m.from && starts;
+            const named = (m.kind === "in" || m.kind === "file") && !!m.from && starts;
             return (
               <li
                 key={i}
@@ -108,7 +126,7 @@ function side(m: Message | undefined) {
   if (!m) return null;
   if (m.kind === "out") return "out";
   if (m.kind === "in") return `in:${m.from ?? ""}`;
-  if (m.kind === "file") return "in:";
+  if (m.kind === "file") return `in:${m.from ?? ""}`;
   return m.kind;
 }
 
