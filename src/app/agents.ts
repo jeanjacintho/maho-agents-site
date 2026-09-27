@@ -37,7 +37,7 @@ export const agents: Agent[] = [
     id: "aha",
     name: "AHA",
     anchor: "aha",
-    image: "/agents/aha.jpg",
+    image: "/agents/aha.png",
     repo: "https://github.com/jeanjacintho/aha-openclaw-agent",
     index: "https://aiworthusing.com/agent-index/aha",
     tagline: "What the public says about your company, in one daily text.",

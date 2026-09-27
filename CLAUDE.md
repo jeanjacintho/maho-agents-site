@@ -25,7 +25,7 @@ after".
 |---|---|---|---|
 | The Founder Times | https://github.com/jeanjacintho/the-founder-times-openclaw-agent | https://aiworthusing.com/agent-index/thefoundertimes | `/agents/founder-times.png` |
 | Meetly | https://github.com/jeanjacintho/meetly-openclaw-agent | https://aiworthusing.com/agent-index/meetly | `/agents/meetly.png` |
-| AHA | https://github.com/jeanjacintho/aha-openclaw-agent | https://aiworthusing.com/agent-index/aha | `/agents/aha.jpg` |
+| AHA | https://github.com/jeanjacintho/aha-openclaw-agent | https://aiworthusing.com/agent-index/aha | `/agents/aha.png` |
 
 - **The Founder Times** — your morning paper, printed on your Mac (or a PDF
   in chat). Opens with an advisor's three ranked, sourced recommendations,
