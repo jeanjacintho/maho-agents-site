@@ -51,8 +51,8 @@ export default async function Image() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", flexWrap: "wrap", fontSize: 84, fontWeight: 600, letterSpacing: -3.5, lineHeight: 1.05 }}>
-            <span>Agents for founders.&nbsp;</span>
-            <span style={{ background: "linear-gradient(transparent 55%, #d9cdff 55%)" }}>You just text them.</span>
+            <span>AI agents for founders,&nbsp;</span>
+            <span style={{ background: "linear-gradient(transparent 55%, #d9cdff 55%)" }}>over text.</span>
           </div>
           <div style={{ marginTop: 24, fontSize: 30, color: "#5e5e6a" }}>
             Your paper, your calendar, your reputation — on a text thread.

@@ -205,12 +205,13 @@ function Hero() {
     <section id="top" className="overflow-x-clip">
       <Container className="grid gap-12 pt-10 pb-16 sm:pt-12 sm:pb-20 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:pt-10">
         <div>
-          <Eyebrow>For founders</Eyebrow>
+          <Eyebrow>Meet Maho</Eyebrow>
           <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-            Start the day knowing what matters. Let the rest get <Mark>handled over text</Mark>.
+            AI agents for founders, <Mark>over text</Mark>.
           </h1>
           <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Three AI agents for founders that you text. They never guess, and never act past your limits.
+            Your morning brief, your meetings and your mentions — handled. They never guess, and never act
+            past your limits.
           </p>
           <div {...reveal(3)} className="mt-9 flex flex-wrap items-center gap-4">
             <a
