@@ -25,16 +25,17 @@ export default function Home() {
         <main id="main" className="flex flex-1 flex-col">
           <div className="relative">
             <Hero />
+            <Problem />
             <Chapter n="01" title="Meet the team" />
             <Ecosystem />
             <Day />
+            <Start />
             <Chapter n="02" title="Why you can trust them" />
             <div className="bg-surface">
               <HowItWorks />
               <Limits />
             </div>
             <Chapter n="03" title="Get started" />
-            <Setup />
             <RunsOnPlow />
             <TryThem />
             <Faq />
@@ -189,7 +190,7 @@ function Nav() {
             href="#try"
             className="rounded-full border border-accent px-3.5 py-1.5 font-medium text-accent transition-[background-color,color] duration-150 ease-out hover:bg-accent hover:text-accent-ink"
           >
-            Try them
+            Get started
           </a>
         </div>
       </Container>
@@ -218,7 +219,7 @@ function Hero() {
               href="#try"
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-ink transition-[opacity,scale] duration-150 ease-out hover:opacity-90 active:scale-[0.96]"
             >
-              See them on the Agent Index <Arrow down />
+              Pick your first agent <Arrow down />
             </a>
             <a href="#ecosystem" className="text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground">
               Or see how they work together
@@ -226,6 +227,42 @@ function Hero() {
           </div>
         </div>
         <LockScreen />
+      </Container>
+    </section>
+  );
+}
+
+/* 2b. The problem, in the reader's words, before any agent appears */
+
+const pains = [
+  "“coffee next week?” turns into six texts about times.",
+  "You find the Hacker News thread about you three days late.",
+  "You open your laptop and the inbox decides your day.",
+];
+
+function Problem() {
+  return (
+    <section id="problem" className="pb-20 sm:pb-28">
+      <Container>
+        <Eyebrow>Sound familiar?</Eyebrow>
+        <SectionTitle>
+          The small jobs <Mark>no one else does</Mark>.
+        </SectionTitle>
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+          {pains.map((p, i) => (
+            <li
+              key={p}
+              {...reveal(i)}
+              className="rounded-3xl border border-line bg-surface p-6 font-display text-2xl leading-snug text-balance sm:p-8"
+            >
+              {p}
+            </li>
+          ))}
+        </ul>
+        <p {...reveal(3)} className="mt-8 max-w-2xl text-muted">
+          Each one is small. Together they’re the part of your job no one else does — so Maho gives each one
+          to an agent.
+        </p>
       </Container>
     </section>
   );
@@ -294,13 +331,11 @@ const day: Moment[] = [
     lead: "Know what to do first, before you open your laptop.",
     body: (
       <>
-        Tell it what you’re trying to make true — close the round, sign ten design partners. Every morning
-        the paper opens with three ranked, sourced recommendations toward it, each challenged by independent
-        critics; then weather, your calendar and up to three stories you asked for. Correct it by text and it
-        remembers, in a wiki on your Mac. It reports only: no purchases, bookings, logins or downloads.
+        Tell it your goal — close the round, sign ten design partners. Every morning the paper opens with
+        three sourced recommendations toward it, printed on your Mac or as a PDF in chat.
       </>
     ),
-    uses: ["Latch", "Your browser", "Calendar", "Mail", "Your printer", "Your wiki"],
+    uses: ["Your browser", "Calendar", "Mail", "Your printer", "A wiki on your Mac"],
     demo: "/founder-times-demo/index.html",
     thread: { messages: foundertimesThread },
   },
@@ -310,14 +345,11 @@ const day: Moment[] = [
     lead: "No more calendar ping-pong. It’s booked before you look.",
     body: (
       <>
-        Every five minutes Meetly reads your new iMessages — or you just ask it (“set up a Meet with Priya
-        next week”). It opens a group with the other person, offers three free times inside your days and
-        hours, asks how you’ll meet if it isn’t clear, books the one they pick and tells you afterwards. For
-        a Google Meet it posts the link in the group ten minutes before. It speaks for you in the third
-        person, never from your own Messages account.
+        Someone texts “coffee next week?” Meetly offers three of your free times in a group text, books the
+        one they pick and tells you after. Or just ask it: “set up a Meet with Priya next week.”
       </>
     ),
-    uses: ["iMessage (via Latch)", "Google Calendar", "Google Meet", "Contacts", "Plow group"],
+    uses: ["Your iMessages", "Google Calendar", "Google Meet", "Contacts", "A group text"],
     demo: "/meetly-demo/index.html",
     thread: { people: 2, messages: meetlyThread },
   },
@@ -327,13 +359,11 @@ const day: Moment[] = [
     lead: "What people said about you today, in one text.",
     body: (
       <>
-        AHA watches what the public says about your company on Hacker News and in Agent Index comments, plus
-        the exact pages you point it at — a competitor’s blog, a changelog, an X profile — and texts you one
-        daily digest. It never searches the open web on its own, and public posts are read as data, never as
-        instructions.
+        Hacker News, Agent Index comments and the pages you choose — a competitor’s blog, a changelog, an X
+        profile — in one text a day.
       </>
     ),
-    uses: ["Hacker News", "Agent Index", "Pages you choose (via Latch)"],
+    uses: ["Hacker News", "Agent Index", "Pages you choose"],
     thread: { messages: ahaThread },
   },
 ];
@@ -546,7 +576,7 @@ function HowItWorks() {
   return (
     <section id="how" className="pt-16 pb-12 sm:pt-20 sm:pb-14">
       <Container>
-        <Eyebrow>How it works</Eyebrow>
+        <Eyebrow>Under the hood</Eyebrow>
         <SectionTitle>
           One pipeline <Mark>under all three</Mark>.
         </SectionTitle>
@@ -572,12 +602,14 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
     items: [
       "What it picks up from your mail and messages is challenged, not taken as fact.",
       "A page that didn’t load is said, not invented.",
+      "AHA visits only the pages you register. It never searches the open web, and reads posts as data, never as instructions.",
       "Network errors, or your Mac being offline, are reported — never hidden.",
     ],
   },
   {
     title: "What Meetly will do with your calendar",
     items: [
+      "Speaks as your assistant, from its own number — never from your Messages account.",
       "Offers only free time inside the days and hours you set.",
       "Posts only the Meet link it created, read fresh from your calendar — never one someone else wrote.",
       <>
@@ -591,7 +623,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
   {
     title: "What stays with you",
     items: [
-      "Purchases, logins, downloads and sends outside an agent’s scope.",
+      "Purchases, logins, downloads and sends outside an agent’s scope. The Founder Times only reports.",
       "Anything past the limits you set comes back to you before it happens.",
     ],
   },
@@ -629,7 +661,7 @@ function Limits() {
   );
 }
 
-/* 6b. Setup: each agent sets itself up in a short chat */
+/* 3c. How to start, from the reader's side: pick, text, get */
 
 const setup: { a: Agent; asks: string }[] = [
   { a: foundertimes, asks: "What time the paper lands, your printer, your goals, and the sections you want." },
@@ -637,27 +669,45 @@ const setup: { a: Agent; asks: string }[] = [
   { a: aha, asks: "Your company and its aliases, your competitors, the sources to watch, and the digest hour." },
 ];
 
-function Setup() {
+const start = [
+  { title: "Pick an agent", body: "Each one has a page on the Agent Index with its setup." },
+  {
+    title: "Text its number",
+    body: "It asks what it needs, one question at a time. No form, no dashboard.",
+  },
+  {
+    title: "Get the result",
+    body: "Your paper at the hour you set, meetings booked inside your hours, a digest every day.",
+  },
+];
+
+function Start() {
   return (
-    <section id="setup" className="pt-16 pb-12 sm:pt-20 sm:pb-14">
+    <section id="start" className="pt-4 pb-20 sm:pb-28">
       <Container>
-        <Eyebrow>Setup</Eyebrow>
+        <Eyebrow>How it works</Eyebrow>
         <SectionTitle>
-          No dashboard to fill in. <Mark>Setup is a text conversation</Mark>.
+          Three steps, <Mark>all by text</Mark>.
         </SectionTitle>
-        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
-          Text the line and the agent asks what it needs, one question at a time — no form, no profile to
-          fill in.
+        <ol className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-3">
+          {start.map((s, i) => (
+            <li key={s.title} {...reveal(i)} className="flex flex-col bg-background p-6 sm:p-8">
+              <span className="font-display text-6xl leading-none text-accent">{i + 1}</span>
+              <h3 className="mt-6 text-lg font-semibold tracking-tight">{s.title}</h3>
+              <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+        <p {...reveal(0)} className="mt-10 text-xs font-medium uppercase tracking-wider text-muted">
+          What each one asks
         </p>
-        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+        <ul className="mt-4 grid gap-6 md:grid-cols-3">
           {setup.map(({ a, asks }, i) => (
-            <li key={a.id} {...reveal(i)} className="rounded-3xl border border-line bg-background p-6 sm:p-8">
-              <p className="flex items-center gap-3 text-lg font-semibold tracking-tight">
-                <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10" />
-                {a.name}
+            <li key={a.id} {...reveal(i)} className="flex gap-3">
+              <Image src={a.image} alt="" width={32} height={32} className="size-8 shrink-0 rounded-full outline-1 -outline-offset-1 outline-black/10" />
+              <p className="leading-relaxed">
+                <span className="font-medium">{a.name}:</span> <span className="text-muted">{asks}</span>
               </p>
-              <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted">Asks</p>
-              <p className="mt-1 leading-relaxed">{asks}</p>
             </li>
           ))}
         </ul>
@@ -727,15 +777,21 @@ function RunsOnPlow() {
 
 /* 8. Try them */
 
+const tryCta: Record<Agent["id"], string> = {
+  thefoundertimes: "Get your morning paper",
+  meetly: "Let Meetly book your meetings",
+  aha: "Get your daily digest",
+};
+
 function TryThem() {
   return (
     <section id="try" className="pt-12 pb-20 sm:pt-14 sm:pb-28">
       <Container>
         <Eyebrow>Try them</Eyebrow>
         <SectionTitle>
-          Each one has a page on the <Mark>Agent Index</Mark>.
+          Pick the one <Mark>you’d text first</Mark>.
         </SectionTitle>
-        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">Setup lives there — pick the one you’d text first.</p>
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">Each agent has a page on the Agent Index with its setup.</p>
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
           {agents.map((a, i) => (
             <li key={a.id} {...reveal(i)} className="flex flex-col items-start rounded-3xl border border-line bg-background p-6 sm:p-8">
@@ -743,9 +799,8 @@ function TryThem() {
               <h3 className="mt-5 text-xl font-semibold tracking-tight">{a.name}</h3>
               <p className="mt-2 flex-1 leading-relaxed text-muted">{a.tagline}</p>
               <div className="mt-6">
-                <IndexButton a={a}>
-                  Open on the Agent Index<span className="sr-only">: {a.name}</span>
-                </IndexButton>
+                <IndexButton a={a}>{tryCta[a.id]}</IndexButton>
+                <p className="mt-2 pl-1 text-xs text-muted">On the Agent Index</p>
               </div>
             </li>
           ))}

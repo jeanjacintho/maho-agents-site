@@ -59,6 +59,15 @@ export const faqs: { q: string; a: string }[] = [
     a: "Yes, but only inside your limits: free time within the days and hours you set, and it tells you afterwards. A time outside your hours, or over an existing event, is booked only on your yes. Holds on your calendar expire after 48 hours. If the request doesn't say how you'll meet, it asks Google Meet or in person along with the times.",
   },
   {
+    q: "Will it text people as me?",
+    a: "No. Each agent has its own phone number. Meetly talks to other people in a group text, as your assistant, in the third person (\"Jean is free Tue at 12:00\"), and never sends from your own Messages account.",
+  },
+  {
+    q: "What if an agent gets something wrong?",
+    a: "Tell it by text. The Founder Times keeps your corrections in a wiki on your Mac and reads them every morning. Meetly tells you after every booking; moving or cancelling a booked meeting is left to you. A page an agent couldn't read is reported, never filled in.",
+  },
+  // TODO(owner): add "What does it cost?" once pricing is decided.
+  {
     q: "Why do the agents use my Mac?",
     a: "Through Latch, they use your Mac for the parts that need it: The Founder Times researches in your own browser and prints, Meetly reads your iMessages and Google Calendar, and AHA visits the exact pages you register. Chat works without it, and if the Mac is offline they tell you.",
   },

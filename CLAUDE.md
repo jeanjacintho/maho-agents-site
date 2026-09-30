@@ -63,11 +63,13 @@ linked as the base Maho runs on.
 1. **Nav** — "Maho", anchors to the three agents, GitHub.
 2. **Hero** — eyebrow "For founders"; "A small team of agents for founders.
    You just text them." + one line on what each does, that they pass context
-   to each other, and both halves of the thesis. CTA "See them on the Agent
-   Index" scrolls to section 8; secondary link to the ecosystem.
+   to each other, and both halves of the thesis. CTA "Pick your first agent"
+   scrolls to section 8; secondary link to the ecosystem.
    Beside it, an illustrative iPhone lock screen with one day of
    notifications from the three agents (07:00, 10:15, 18:00), each linking to
    its section.
+2b. **Sound familiar?** — the problem before any agent: three small founder
+   pains in the reader's words, one per agent. No invented statistics.
 3. **One agent per job** (after 3b on the page) — like plow.co/build's templates: one
    realistic text exchange per agent (not cards), in the order of a day, with
    the connectors it uses listed underneath.
@@ -80,6 +82,9 @@ linked as the base Maho runs on.
      place, asks Meet or in person in the same message as the times.
    - Evening — AHA: the daily digest. Hacker News, Agent Index, pages you
      choose.
+   Each block is one benefit line plus one or two sentences; the thread is
+   the proof, and rules live in section 5. Chips use plain words ("A group
+   text", "Your iMessages"), not Plow/Latch names.
    The Founder Times and Meetly link to their animated demos in
    `public/*-demo/` ("Watch the demo"). The illustrative owner is Jean, as in
    the demos.
@@ -93,7 +98,9 @@ linked as the base Maho runs on.
    Priya and books Wed 10:00; (4) Wed 07:00 The Founder Times prints the call
    on the calendar rail and puts "prep for Northwind" first on the advisor
    desk. Names are illustrative.
-4. **How it works** — numbered pipeline shared by all three:
+3c. **How it works** (end of chapter 01) — the reader's three steps: pick an
+   agent, text its number, get the result; then what each agent asks.
+4. **Under the hood** — numbered pipeline shared by all three:
    1. It listens (texts, email, iMessage, calendar, the public pages you choose).
    2. It keeps only what matters (the paper's picks survive critics, AHA
       reports only what's new and about you, Meetly skips codes and marketing).
@@ -109,13 +116,12 @@ linked as the base Maho runs on.
    - purchases, logins, downloads and sends outside an agent's scope stay
      with the owner;
    - network errors or the Mac being offline are reported, never hidden.
-6b. **Setup** — "Setup is a text conversation": what each agent asks, one
-   question at a time (from each README's setup section).
 7. **Runs on Plow** — three short blocks linking to official docs: a real
    phone line (Plow Chat, https://howto.plow.co/), Latch
    (https://howto.plow.co/latch), Agent Index
    (https://aiworthusing.com/agent-index). Don't re-explain Plow.
-8. **Try them** — one button per agent to its Agent Index page. No install
+8. **Try them** — one button per agent to its Agent Index page, labeled by
+   what you get ("Get your morning paper"), with "On the Agent Index" below. No install
    commands on the site; the Agent Index page handles that.
 9. **Final CTA** — the three Agent Index links + "View on GitHub".
 10. **Footer** — the three repos, Agent Index, licenses: all three are MIT
@@ -161,10 +167,11 @@ linked as the base Maho runs on.
   card with a soft glow — rounded on small screens, a square grid cell
   between the rails on xl. The rails run through the footer. No dark purple bands — they clash with the
   light page.
-- The page reads in three chapters — 01 Meet the team (How they work
-  together, One agent per job), 02 Why you can trust them (How it works,
-  Transparency), 03 Get started (Setup, Runs on Plow, Try them, FAQ) — then
-  the final CTA.
+- The page reads: hero, Sound familiar?, then three chapters — 01 Meet the
+  team (How they work together, One agent per job, How it works), 02 Why you
+  can trust them (Under the hood, Transparency), 03 Get started (Runs on
+  Plow, Try them, FAQ) — then the final CTA.
+- CTAs say what you get (verb + outcome), not where the link goes.
   Only chapters get a hard break (a hatched strip with the chapter name,
   lilac crosses where it meets the side rails (xl screens only)); sections inside
   a chapter are separated by space. Chapter 1 titles are one size larger and
