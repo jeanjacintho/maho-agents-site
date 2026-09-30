@@ -83,7 +83,7 @@ linked as the base Maho runs on.
      place, asks Meet or in person in the same message as the times.
    - Evening — AHA: the daily digest. Hacker News, Agent Index, pages you
      choose.
-   Each block is one benefit line plus one or two sentences; the thread is
+   Each block is one benefit line plus one short sentence; the thread is
    the proof, and rules live in section 5. Chips use plain words ("A group
    text", "Your iMessages"), not Plow/Latch names.
    The Founder Times and Meetly link to their animated demos in
@@ -100,7 +100,7 @@ linked as the base Maho runs on.
    on the calendar rail and puts "prep for Northwind" first on the advisor
    desk. Names are illustrative.
 3c. **How it works** (end of chapter 01) — the reader's three steps: pick an
-   agent, text its number, get the result; then what each agent asks.
+   agent, text its number, get the result.
 4. **Under the hood** — numbered pipeline shared by all three:
    1. It listens (texts, email, iMessage, calendar, the public pages you choose).
    2. It keeps only what matters (the paper's picks survive critics, AHA
@@ -173,6 +173,9 @@ linked as the base Maho runs on.
   can trust them (Under the hood, Transparency), 03 Get started (Runs on
   Plow, Try them, FAQ) — then the final CTA.
 - CTAs say what you get (verb + outcome), not where the link goes.
+- Keep copy short: the hero subline is one line, section intros are one
+  sentence, rules are a few words each. The threads carry the detail; the
+  rest goes in the FAQ.
   Only chapters get a hard break (a hatched strip with the chapter name,
   lilac crosses where it meets the side rails (xl screens only)); sections inside
   a chapter are separated by space. Chapter 1 titles are one size larger and
