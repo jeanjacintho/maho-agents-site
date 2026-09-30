@@ -85,8 +85,9 @@ linked as the base Maho runs on.
    Each block is one benefit line plus one short sentence; the thread is
    the proof, and rules live in section 5. Chips use plain words ("A group
    text", "Your iMessages"), not Plow/Latch names.
-   The Founder Times and Meetly link to their animated demos in
-   `public/*-demo/` ("Watch the demo"). The illustrative owner is Jean, as in
+   Each block ends with its outcome CTA to the Agent Index ("Get your
+   morning paper"); The Founder Times and Meetly add a "Watch the demo" link
+   to their animated demos in `public/*-demo/`. The illustrative owner is Jean, as in
    the demos.
    Conversations are illustrative; the section intro says so (no visible
    "Example" labels — they carry an sr-only caption), and they are never fake

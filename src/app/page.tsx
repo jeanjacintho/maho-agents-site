@@ -139,6 +139,14 @@ function Mark({ children }: { children: React.ReactNode }) {
 const outlineButton =
   "group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-[background-color,color,scale] duration-150 ease-out hover:bg-accent hover:text-accent-ink active:scale-[0.96]";
 
+// Each agent's call to action names what you get; the link goes to its
+// Agent Index page, where setup lives.
+const tryCta: Record<Agent["id"], string> = {
+  thefoundertimes: "Get your morning paper",
+  meetly: "Let Meetly book your meetings",
+  aha: "Get your daily digest",
+};
+
 function IndexButton({ a, children }: { a: Agent; children: React.ReactNode }) {
   return (
     <a href={a.index} className={outlineButton}>
@@ -407,17 +415,15 @@ function Day() {
                   </ul>
                 </div>
                 <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <IndexButton a={m.a}>{tryCta[m.a.id]}</IndexButton>
                   {m.demo && (
-                    <a href={m.demo} className={outlineButton}>
+                    <a
+                      href={m.demo}
+                      className="group inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+                    >
                       Watch the demo<span className="sr-only">: {m.a.name}</span> <Arrow />
                     </a>
                   )}
-                  <a
-                    href={m.a.index}
-                    className="group inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
-                  >
-                    {m.a.name} on the Agent Index <Arrow />
-                  </a>
                 </div>
               </div>
               <div className={`mx-auto w-full max-w-[25rem] ${i % 2 ? "lg:order-1" : ""}`}>
@@ -735,12 +741,6 @@ function RunsOnPlow() {
 }
 
 /* 8. Try them */
-
-const tryCta: Record<Agent["id"], string> = {
-  thefoundertimes: "Get your morning paper",
-  meetly: "Let Meetly book your meetings",
-  aha: "Get your daily digest",
-};
 
 function TryThem() {
   return (
