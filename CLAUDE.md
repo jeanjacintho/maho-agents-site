@@ -2,8 +2,10 @@
 
 # Maho — landing page brief
 
-This repo is the landing page for **Maho**, an ecosystem of three agents that
-live on a text thread, built on Plow + OpenClaw. The page is in **English**.
+This repo is the landing page for **Maho**, a small team of three agents for
+founders that live on a text thread and pass context to each other, built on
+Plow + OpenClaw. The reader is a founder: lead with who it's for and what they
+get; the base (Plow, OpenClaw, Latch) belongs in chapter 03. The page is in **English**.
 Stack: Next.js (App Router, `src/`), Tailwind v4, static output, Vercel.
 
 `src/app/page.tsx` is a placeholder. Build the page described here.
@@ -38,8 +40,11 @@ after".
   opens a Plow group with them, offers three free times from Google Calendar
   within your days/hours, holds them, books the one they pick, and tells you
   in your DM afterwards.
-- **AHA** — watches what the public says about your company (Hacker News and
-  Agent Index comments today) and texts you a daily digest. Do **not** present
+- **AHA** — watches what the public says about your company (Hacker News,
+  Agent Index comments, and the exact pages the owner registers, such as a
+  competitor's blog, a changelog or an X profile) and texts you a daily
+  digest. Reddit monitoring and approved replies are in the README but not on
+  the site until the owner confirms. Do **not** present
   group routing by role / team claiming as shipped — it is roadmap.
 
 The agent's name is written **AHA** (all caps) in copy; its id, URL slug
@@ -56,40 +61,55 @@ branding, logos, copy or visuals. Plow, OpenClaw and Latch are named and
 linked as the base Maho runs on.
 
 1. **Nav** — "Maho", anchors to the three agents, GitHub.
-2. **Hero** — thesis + one line "Three agents, one base: Plow + OpenClaw".
-   CTA "See them on the Agent Index" scrolls to section 8.
+2. **Hero** — eyebrow "Meet Maho"; "AI agents for founders, over text." (say
+   what it is at first glance) + one line: what they handle (morning brief,
+   meetings, mentions) and both halves of the thesis. CTA "Pick your first agent"
+   scrolls to section 8; secondary link to the ecosystem.
    Beside it, an illustrative iPhone lock screen with one day of
    notifications from the three agents (07:00, 10:15, 18:00), each linking to
    its section.
-3. **The ecosystem as conversations** — like plow.co/build's templates: one
+2b. **Sound familiar?** — the problem before any agent: three small founder
+   pains in the reader's words, one per agent. No invented statistics.
+3. **One agent per job** (after 3b on the page) — like plow.co/build's templates: one
    realistic text exchange per agent (not cards), in the order of a day, with
    the connectors it uses listed underneath.
    - Morning — The Founder Times: "today's edition" + PDF/print. Latch,
      browser, Calendar, Mail, printer.
    - During the day — Meetly: someone asks for coffee → group opens → three
      times offered → booked → owner told in DM. iMessage (via Latch), Google
-     Calendar, Contacts, Plow group. Meetly speaks in third person ("Jean is
-     free Tue 29/9 at 12:00").
-   - Evening — AHA: the daily digest. Hacker News, Agent Index.
+     Calendar, Google Meet, Contacts, Plow group. Meetly speaks in third
+     person ("Jean is free Tue 29/9 at 12:00") and, when "coffee" names no
+     place, asks Meet or in person in the same message as the times.
+   - Evening — AHA: the daily digest. Hacker News, Agent Index, pages you
+     choose.
+   Each block is one benefit line plus one short sentence; the thread is
+   the proof, and rules live in section 5. Chips use plain words ("A group
+   text", "Your iMessages"), not Plow/Latch names.
+   Each block ends with its outcome CTA to the Agent Index ("Get your
+   morning paper"); The Founder Times and Meetly add a "Watch the demo" link
+   to their animated demos in `public/*-demo/`. The illustrative owner is Jean, as in
+   the demos.
    Conversations are illustrative; the section intro says so (no visible
    "Example" labels — they carry an sr-only caption), and they are never fake
    screenshots of real people.
-3b. **The ecosystem** — one opportunity through all three, as four compact
+3b. **How they work together** (first section of chapter 01) — one opportunity through all three, as four compact
    iMessage cards: (1) Tue 18:00 AHA's digest carries Priya (Northwind)'s
    partnership post on X — AHA reads only the X pages the owner registers;
-   (2) Sam asks Meetly in its DM to reach out; (3) Meetly opens a group with
+   (2) Jean asks Meetly in its DM to reach out; (3) Meetly opens a group with
    Priya and books Wed 10:00; (4) Wed 07:00 The Founder Times prints the call
    on the calendar rail and puts "prep for Northwind" first on the advisor
    desk. Names are illustrative.
-4. **How it works** — numbered pipeline shared by all three:
-   1. It listens (chat, email, iMessage, groups, the public web).
-   2. It decides what matters (recommendations challenged by critics, not the
-      first idea).
+3c. **How it works** (end of chapter 01) — the reader's three steps: pick an
+   agent, text its number, get the result.
+4. **Under the hood** — numbered pipeline shared by all three:
+   1. It listens (texts, email, iMessage, calendar, the public pages you choose).
+   2. It keeps only what matters (the paper's picks survive critics, AHA
+      reports only what's new and about you, Meetly skips codes and marketing).
    3. It acts only inside your limits — anything beyond comes back to you.
    4. It delivers and tells you, in your format (text, PDF, paper, the right
       group).
 5. **Transparency and limits** — the only place these rules are listed:
-   - a labeled signal is never accepted as fact without critique; a page that
+   - what an agent picks up from mail and messages is never accepted as fact without critique; a page that
      didn't load is said, not invented;
    - Meetly offers only free time inside your hours, never shows calendar
      details ("an existing commitment"), books over an event only on your
@@ -101,7 +121,8 @@ linked as the base Maho runs on.
    phone line (Plow Chat, https://howto.plow.co/), Latch
    (https://howto.plow.co/latch), Agent Index
    (https://aiworthusing.com/agent-index). Don't re-explain Plow.
-8. **Try them** — one button per agent to its Agent Index page. No install
+8. **Try them** — one button per agent to its Agent Index page, labeled by
+   what you get ("Get your morning paper"), with "On the Agent Index" below. No install
    commands on the site; the Agent Index page handles that.
 9. **Final CTA** — the three Agent Index links + "View on GitHub".
 10. **Footer** — the three repos, Agent Index, licenses: all three are MIT
@@ -136,8 +157,10 @@ linked as the base Maho runs on.
   light: white background with the purple accent, even when the device is in
   dark mode. Static-renderable (no client-only data fetching).
 - The small labels in the example threads (9–11px: times,
-  sender names, "PDF") and the 10px step numbers in "A day with them" are
+  sender names, "PDF") and the 10px step numbers in "One agent per job" are
   deliberate. Don't raise them to 12px.
+- Plain words over internal terms: not "calendar rail", "advisor desk" or
+  "labeled signal" in page copy.
 - Purple has two jobs: actions (buttons, links) and emphasis in display type
   and markers — the lilac highlighter behind headline keywords (`<Mark>`),
   section eyebrows, step numbers and bullets. Never color body text purple.
@@ -145,8 +168,14 @@ linked as the base Maho runs on.
   card with a soft glow — rounded on small screens, a square grid cell
   between the rails on xl. The rails run through the footer. No dark purple bands — they clash with the
   light page.
-- The page reads in three chapters — 01 Meet the agents (A day with them,
-  The ecosystem), 02 Why you can trust them (How it works, Transparency), 03 Get started (Runs on Plow, Try them) — then the final CTA.
+- The page reads: hero, Sound familiar?, then three chapters — 01 Meet the
+  team (How they work together, One agent per job, How it works), 02 Why you
+  can trust them (Under the hood, Transparency), 03 Get started (Runs on
+  Plow, Try them, FAQ) — then the final CTA.
+- CTAs say what you get (verb + outcome), not where the link goes.
+- Keep copy short: the hero subline is one line, section intros are one
+  sentence, rules are a few words each. The threads carry the detail; the
+  rest goes in the FAQ.
   Only chapters get a hard break (a hatched strip with the chapter name,
   lilac crosses where it meets the side rails (xl screens only)); sections inside
   a chapter are separated by space. Chapter 1 titles are one size larger and

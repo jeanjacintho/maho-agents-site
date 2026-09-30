@@ -42,7 +42,7 @@ export function Thread({
       <figcaption className="sr-only">An illustrative thread with {title}</figcaption>
       <div className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-[0_24px_48px_-32px_rgb(0_0_0/0.35)]">
         <header className={`items-start bg-linear-to-b ${compact ? "flex justify-center" : "grid grid-cols-[1fr_auto_1fr]"} from-[#f2f2f4] to-white px-3 pt-3 pb-1`}>
-          <span aria-hidden className={`glass size-10 place-items-center rounded-full ${compact ? "hidden" : "grid"}`}>
+          <span aria-hidden className={`glass size-9 place-items-center rounded-full ${compact ? "hidden" : "grid"}`}>
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6" />
               <path d="m17.5 3.5 3 3L13 14l-3.5.5.5-3.5z" />
@@ -55,7 +55,7 @@ export function Thread({
                 alt=""
                 width={64}
                 height={64}
-                className={`rounded-full outline-1 -outline-offset-1 outline-black/10 ${compact ? "size-11" : "size-16"}`}
+                className={`rounded-full outline-1 -outline-offset-1 outline-black/10 ${compact ? "size-11" : "size-12"}`}
               />
               {people && (
                 <span aria-hidden className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-linear-to-b from-[#96a1c0] to-[#6e7a9c] ring-2 ring-white">
@@ -66,7 +66,7 @@ export function Thread({
                 </span>
               )}
             </span>
-            <p className="glass -mt-1.5 flex items-center gap-1 rounded-full px-3 py-1 text-[15px] font-bold tracking-tight">
+            <p className="glass -mt-1.5 flex items-center gap-1 rounded-full px-3 py-1 text-sm font-bold tracking-tight">
               {people ? `${people} People` : title}
               <svg aria-hidden viewBox="0 0 8 12" className="h-2.5 w-auto text-muted">
                 <path d="m2 1 4 5-4 5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,7 +80,7 @@ export function Thread({
               Encrypted
             </p>
           </div>
-          <span aria-hidden className={`glass size-10 place-items-center justify-self-end rounded-full ${compact ? "hidden" : "grid"}`}>
+          <span aria-hidden className={`glass size-9 place-items-center justify-self-end rounded-full ${compact ? "hidden" : "grid"}`}>
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
               <rect x="3" y="6" width="13" height="12" rx="3" />
               <path d="m16 10.5 5-3v9l-5-3z" />
@@ -109,10 +109,10 @@ export function Thread({
           })}
         </ol>
         <div aria-hidden className={`items-center gap-2 px-3 pb-3 ${compact ? "hidden" : "flex"}`}>
-          <span className="glass grid size-9 shrink-0 place-items-center rounded-full text-xl leading-none text-muted">
+          <span className="glass grid size-8 shrink-0 place-items-center rounded-full text-xl leading-none text-muted">
             +
           </span>
-          <span className="glass flex-1 rounded-full px-4 py-2 text-[15px] text-muted/70">iMessage</span>
+          <span className="glass flex-1 rounded-full px-4 py-1.5 text-sm text-muted/70">iMessage</span>
         </div>
       </div>
     </figure>

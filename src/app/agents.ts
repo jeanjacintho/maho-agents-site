@@ -20,7 +20,7 @@ export const agents: Agent[] = [
     image: "/agents/founder-times.png",
     repo: "https://github.com/jeanjacintho/the-founder-times-openclaw-agent",
     index: "https://aiworthusing.com/agent-index/thefoundertimes",
-    tagline: "Your morning paper, printed on your Mac — or a PDF in chat.",
+    tagline: "Your morning paper: what to do first, sourced and printed — or a PDF in chat.",
     license: "MIT © Jean Jacintho",
   },
   {

@@ -7,8 +7,8 @@ import { reveal } from "./motion";
 // as on the iOS lock screen.
 const notifications: { a: Agent; time: string; text: string }[] = [
   { a: agent("thefoundertimes"), time: "07:00", text: "Today’s edition is in the printer tray, and here in chat." },
-  { a: agent("meetly"), time: "10:15", text: "Booked coffee with Ana, Wed 30/9 at 15:00. Invite sent." },
-  { a: agent("aha"), time: "18:00", text: "Daily digest for Acme: 3 new mentions, most on pricing." },
+  { a: agent("meetly"), time: "10:15", text: "Booked coffee with Ana, Wed 30/9 at 15:00 at Café Floresta." },
+  { a: agent("aha"), time: "18:00", text: "Daily digest for Acme: 4 new mentions, most on pricing." },
 ];
 
 export function LockScreen() {
