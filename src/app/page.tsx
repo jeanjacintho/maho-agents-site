@@ -207,11 +207,12 @@ function Hero() {
         <div>
           <Eyebrow>For founders</Eyebrow>
           <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-            A small team of agents for founders. <Mark>You just text them.</Mark>
+            Start the day knowing what matters. Let the rest get <Mark>handled over text</Mark>.
           </h1>
           <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            One tells you what to do first each morning, one books your meetings, one tells you what people
-            say about your company — and they pass context to each other. They never make up what they can’t
+            Maho is a small team of AI agents for founders. One tells you what to do first each morning, one
+            books your meetings, one tells you what people say about your company — and they pass context to
+            each other. They never make up what they can’t
             check, and they only act inside the limits you set.
           </p>
           <div {...reveal(3)} className="mt-9 flex flex-wrap items-center gap-4">

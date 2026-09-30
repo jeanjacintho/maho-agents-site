@@ -14,7 +14,7 @@ export const siteUrl = (
 export const site = {
   name: "Maho",
   title: "Maho — a small team of AI agents for founders, over text",
-  tagline: "A small team of agents for founders. You just text them.",
+  tagline: "Start the day knowing what matters. Let the rest get handled over text.",
   description:
     "Maho is a small team of AI agents for founders that you text and that pass context to each other: The Founder Times prints a morning paper that opens with what to do first, Meetly books your meetings from your text thread, and AHA texts you what the public says about your company. They never make up what they can't check, and they only act inside the limits you set.",
   author: { name: "Jean Jacintho", url: "https://github.com/jeanjacintho" },

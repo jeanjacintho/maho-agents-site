@@ -61,8 +61,9 @@ branding, logos, copy or visuals. Plow, OpenClaw and Latch are named and
 linked as the base Maho runs on.
 
 1. **Nav** — "Maho", anchors to the three agents, GitHub.
-2. **Hero** — eyebrow "For founders"; "A small team of agents for founders.
-   You just text them." + one line on what each does, that they pass context
+2. **Hero** — eyebrow "For founders"; "Start the day knowing what matters.
+   Let the rest get handled over text." + a line saying Maho is a small team
+   of agents for founders, what each does, that they pass context
    to each other, and both halves of the thesis. CTA "Pick your first agent"
    scrolls to section 8; secondary link to the ecosystem.
    Beside it, an illustrative iPhone lock screen with one day of
