@@ -18,7 +18,7 @@ export function llmsTxt() {
 
 > ${site.description}
 
-Maho is three AI agents that live where you already are: text, email and group chat. Each agent has its own phone line on Plow Chat, runs on OpenClaw, and reaches the owner's Mac through Latch. All three are open source (MIT).
+Maho is a small team of three AI agents for founders. You text them, and they pass context to each other. Each agent has its own phone line on Plow Chat, runs on OpenClaw, and reaches the owner's Mac through Latch. All three are open source (MIT).
 
 ## Agents
 
@@ -28,7 +28,7 @@ ${agents.map((a) => `- [${a.name}](${a.index}): ${a.tagline} Source: ${a.repo}`)
 
 - AHA spots a partnership post about your company on X in its daily digest.
 - You ask Meetly to reach out; it opens a group with that person and books the call.
-- The next morning, The Founder Times prints the meeting on its calendar rail and puts the prep first on the advisor desk.
+- The next morning, The Founder Times prints the meeting on its calendar and puts the prep first on its list of recommendations.
 
 ## Rules they follow
 
@@ -74,7 +74,8 @@ Your morning paper, printed. A compact Letter paper that goes to a printer on yo
 
 - It opens with an advisor's desk: three ranked, sourced recommendations, challenged by independent critics, using your mail, messages, calendar and the sources you name.
 - Then weather, one calendar rail, and up to three stories you asked it to cover. Mail and sports stay in the chat edition.
-- You can ask for a section, a one-day assignment ("put the iPhone price in tomorrow's paper"), or a one-off.
+- You can ask for a section, a one-day assignment ("put the iPhone price in tomorrow's paper"), or a one-off, which arrives as its own short edition.
+- What it prints, your goals and your corrections ("Raj is my cousin") go into a wiki on your Mac (~/Plow/wiki) that opens in Obsidian.
 - The first message sets the hour the paper arrives. There is no profile to fill in.
 - Research runs in your own browser through Latch. If a page cannot be read, the paper says so; it does not invent the paragraph.
 - It reports only. No purchases, bookings, logins or downloads.
@@ -92,8 +93,10 @@ A scheduling assistant on a text thread. Every five minutes it reads new iMessag
 1. opens a Plow group with you and that person,
 2. offers three free times from your Google Calendar, inside the days and hours you allow,
 3. holds those times on your calendar,
-4. books the one they pick, invites them if it knows their email, and releases the other holds,
-5. tells you in your DM what it did.
+4. asks how you'll meet (Google Meet or in person) when the message does not say,
+5. books the one they pick, invites them if it knows their email, and releases the other holds; for a Meet it creates the room,
+6. posts the Meet link in the group 10 minutes before the start,
+7. tells you in your DM what it did.
 
 You can also ask it directly ("set up lunch with Patrick next week"); it finds the person in your Contacts and runs the same group. It does not wait for you. It speaks as your assistant in the third person ("Jean is free Tue 29/9 at 12:00") and never texts from your own Messages account.
 
@@ -129,14 +132,14 @@ Watches what the public says about your company and texts you a daily digest. To
 1. Tuesday 18:00 — AHA's daily digest carries a post on X from a potential partner who wants to work with your company.
 2. You ask Meetly, in its DM, to reach out to that person.
 3. Meetly opens a group with them, offers three free times, and books the one they pick.
-4. Wednesday 07:00 — The Founder Times prints the call on its calendar rail and puts "prep for the call" first on the advisor desk.
+4. Wednesday 07:00 — The Founder Times prints the call on its calendar and puts "prep for the call" first on its list of recommendations.
 
 Each agent stays in its own lane, and you decide in between.
 
 
 ## Shared rules
 
-- A labeled signal is never accepted as fact without critique.
+- What an agent picks up from your mail and messages is challenged, not taken as fact.
 - A page that didn't load is said, not invented.
 - Purchases, logins, downloads and sends outside an agent's scope stay with the owner.
 - Network errors, or the Mac being offline, are reported — never hidden.

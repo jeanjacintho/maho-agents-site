@@ -13,12 +13,13 @@ export const siteUrl = (
 
 export const site = {
   name: "Maho",
-  title: "Maho — AI agents that live on your text thread",
-  tagline: "Agents that live where you already are.",
+  title: "Maho — a small team of AI agents for founders, over text",
+  tagline: "A small team of agents for founders. You just text them.",
   description:
-    "Maho is an ecosystem of three AI agents you text: The Founder Times prints your morning paper, Meetly books meetings from your text thread, and AHA texts you what the public says about your company. They never make up what they can't check, and they only act inside the rules you set.",
+    "Maho is a small team of AI agents for founders that you text and that pass context to each other: The Founder Times prints a morning paper that opens with what to do first, Meetly books your meetings from your text thread, and AHA texts you what the public says about your company. They never make up what they can't check, and they only act inside the limits you set.",
   author: { name: "Jean Jacintho", url: "https://github.com/jeanjacintho" },
   keywords: [
+    "AI agents for founders",
     "AI agents",
     "AI assistant over text",
     "iMessage AI assistant",
@@ -39,7 +40,7 @@ export const site = {
 export const faqs: { q: string; a: string }[] = [
   {
     q: "What is Maho?",
-    a: "Maho is an ecosystem of three AI agents you talk to by text: The Founder Times, Meetly and AHA. Each has its own phone line on Plow Chat and runs on OpenClaw. They never make up what they can't check, and they only act inside the rules you set.",
+    a: "Maho is a small team of AI agents for founders that you talk to by text: The Founder Times, Meetly and AHA. Each has its own phone line on Plow Chat and runs on OpenClaw. They never make up what they can't check, and they only act inside the limits you set.",
   },
   {
     q: "Do I need to install a new app?",
@@ -47,11 +48,15 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What does each agent do?",
-    a: "The Founder Times prints a morning paper on your Mac, or sends it as a PDF, opening with three ranked, sourced recommendations. Meetly books meetings from your text thread inside the hours you allow. AHA watches what the public says about your company and texts you a daily digest.",
+    a: "The Founder Times prints a morning paper on your Mac, or sends it as a PDF, opening with three ranked, sourced recommendations toward the goals you told it. Meetly books meetings from your text thread inside the hours you allow, and posts the Google Meet link before the call. AHA watches what the public says about your company and texts you a daily digest.",
+  },
+  {
+    q: "Do the agents work together?",
+    a: "Yes, with you in between. For example: AHA's digest carries a post from someone who wants to partner with you; you ask Meetly to reach out and it books the call; the next morning The Founder Times puts the call on your calendar and the prep first on its list. Each agent stays in its own lane.",
   },
   {
     q: "Can Meetly book a meeting without asking me?",
-    a: "Yes, but only inside your limits: free time within the days and hours you set, and it tells you afterwards. A time outside your hours, or over an existing event, is booked only on your yes. Holds on your calendar expire after 48 hours.",
+    a: "Yes, but only inside your limits: free time within the days and hours you set, and it tells you afterwards. A time outside your hours, or over an existing event, is booked only on your yes. Holds on your calendar expire after 48 hours. If the request doesn't say how you'll meet, it asks Google Meet or in person along with the times.",
   },
   {
     q: "Why do the agents use my Mac?",
@@ -63,6 +68,6 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How do I set them up?",
-    a: "Each agent has a page on the Agent Index with its setup. The source code of all three is on GitHub under the MIT license.",
+    a: "Each agent has a page on the Agent Index with its setup. Once it's running, you text its line and it asks what it needs, one question at a time. The source code of all three is on GitHub under the MIT license.",
   },
 ];

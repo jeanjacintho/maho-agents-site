@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { agents } from "./agents";
 
 // The share card for links to the site (Open Graph and X).
-export const alt = "Maho — three AI agents that live on your text thread: The Founder Times, Meetly and AHA.";
+export const alt = "Maho — a small team of AI agents for founders, over text: The Founder Times, Meetly and AHA.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,8 +51,8 @@ export default async function Image() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", flexWrap: "wrap", fontSize: 84, fontWeight: 600, letterSpacing: -3.5, lineHeight: 1.05 }}>
-            <span>Agents that live where you&nbsp;</span>
-            <span style={{ background: "linear-gradient(transparent 55%, #d9cdff 55%)" }}>already are.</span>
+            <span>Agents for founders.&nbsp;</span>
+            <span style={{ background: "linear-gradient(transparent 55%, #d9cdff 55%)" }}>You just text them.</span>
           </div>
           <div style={{ marginTop: 24, fontSize: 30, color: "#5e5e6a" }}>
             Your paper, your calendar, your reputation — on a text thread.

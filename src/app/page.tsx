@@ -25,15 +25,16 @@ export default function Home() {
         <main id="main" className="flex flex-1 flex-col">
           <div className="relative">
             <Hero />
-            <Chapter n="01" title="Meet the agents" />
-            <Day />
+            <Chapter n="01" title="Meet the team" />
             <Ecosystem />
+            <Day />
             <Chapter n="02" title="Why you can trust them" />
             <div className="bg-surface">
               <HowItWorks />
               <Limits />
             </div>
             <Chapter n="03" title="Get started" />
+            <Setup />
             <RunsOnPlow />
             <TryThem />
             <Faq />
@@ -179,7 +180,7 @@ function Nav() {
         <div className="ml-auto flex items-center gap-4 text-sm">
           {/* A label, not a control: square corners and no hover, unlike the pill buttons. */}
           <span className="hidden rounded-md border border-accent/50 bg-[#ece6ff] px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#2e1f86] lg:inline-block">
-            Your agent ecosystem
+            Agents for founders
           </span>
           <a href={links.github} className="text-muted hover:text-foreground">
             GitHub
@@ -203,13 +204,14 @@ function Hero() {
     <section id="top" className="overflow-x-clip">
       <Container className="grid gap-12 pt-10 pb-16 sm:pt-12 sm:pb-20 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:pt-10">
         <div>
-          <Eyebrow>Three agents, one base: Plow + OpenClaw</Eyebrow>
+          <Eyebrow>For founders</Eyebrow>
           <h1 {...reveal(1)} className="mt-5 font-display text-5xl leading-[1.1] text-balance sm:text-6xl">
-            Agents that live where you <Mark>already are</Mark>.
+            A small team of agents for founders. <Mark>You just text them.</Mark>
           </h1>
           <p {...reveal(2)} className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Text, email, group chat. They never make up what they can’t check, and they only act
-            inside the rules you gave them.
+            One tells you what to do first each morning, one books your meetings, one tells you what people
+            say about your company — and they pass context to each other. They never make up what they can’t
+            check, and they only act inside the limits you set.
           </p>
           <div {...reveal(3)} className="mt-9 flex flex-wrap items-center gap-4">
             <a
@@ -218,8 +220,8 @@ function Hero() {
             >
               See them on the Agent Index <Arrow down />
             </a>
-            <a href="#day" className="text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground">
-              Or read a day with them
+            <a href="#ecosystem" className="text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground">
+              Or see how they work together
             </a>
           </div>
         </div>
@@ -239,30 +241,30 @@ const foundertimesThread: Message[] = [
     kind: "in",
     text: "Front page: three ranked recommendations, each sourced and challenged by the critics. One page wouldn’t load — the paper says so instead of filling the gap.",
   },
-  { kind: "out", text: "put the iPhone price in tomorrow’s paper" },
-  { kind: "in", text: "Noted — it runs in tomorrow’s edition only." },
+  { kind: "out", text: "Raj is my cousin, not an investor" },
+  { kind: "in", text: "Got it — noted in your wiki. The desk won’t treat Raj as an investor again." },
 ];
 
 const meetlyThread: Message[] = [
-  { kind: "note", text: "iMessage to Sam · 10:12" },
+  { kind: "note", text: "iMessage to Jean · 10:12" },
   { kind: "in", from: "Ana", text: "coffee next week?" },
-  { kind: "note", text: "10:15 · Meetly opened a group: Sam, Ana, Meetly" },
+  { kind: "note", text: "10:15 · Meetly opened a group: Jean, Ana, Meetly" },
   {
     kind: "in",
     from: "Meetly",
-    text: "Hi Ana — I’m Meetly, Sam’s scheduling assistant. Sam is free Tue 29/9 at 12:00, Wed 30/9 at 15:00 or Thu 1/10 at 10:00. Which works?",
+    text: "Hi Ana — I’m Meetly, Jean’s scheduling assistant. Jean is free Tue 29/9 at 12:00, Wed 30/9 at 15:00 or Thu 1/10 at 10:00. Which works? And would you like to meet on Google Meet or in person?",
   },
-  { kind: "in", from: "Ana", text: "wed at 3 works" },
+  { kind: "in", from: "Ana", text: "wed at 3, in person! Café Floresta?" },
   {
     kind: "in",
     from: "Meetly",
-    text: "Booked: Wed 30/9 at 15:00. Invite sent. The other two times are released.",
+    text: "Booked: Wed 30/9 at 15:00, in person at Café Floresta. The other two times are released.",
   },
-  { kind: "note", text: "Later, in Sam’s DM" },
+  { kind: "note", text: "Later, in Jean’s DM" },
   {
     kind: "in",
     from: "Meetly",
-    text: "Booked coffee with Ana, Wed 30/9 at 15:00. She asked by iMessage; I offered three times inside your hours and she picked one.",
+    text: "Booked coffee with Ana, Wed 30/9 at 15:00 at Café Floresta. She asked by iMessage; I offered three times inside your hours and she picked one.",
   },
 ];
 
@@ -270,7 +272,7 @@ const ahaThread: Message[] = [
   { kind: "time", text: "Tue 18:00 · the hour you set" },
   {
     kind: "in",
-    text: "Daily digest for Acme — 3 new mentions.\n\nHacker News (2)\n• A Show HN thread about Acme, most comments on pricing\n• A comment comparing Acme to a competitor\n\nAgent Index (1)\n• A new comment on Acme’s listing asking about setup",
+    text: "Daily digest for Acme — 4 new mentions.\n\nHacker News (2)\n• A Show HN thread about Acme, most comments on pricing\n• A comment comparing Acme to a competitor\n\nAgent Index (1)\n• A new comment on Acme’s listing asking about setup\n\nPages you watch (1)\n• Globex’s changelog: a new pricing page that compares itself to Acme",
   },
   { kind: "out", text: "thanks" },
 ];
@@ -281,6 +283,7 @@ type Moment = {
   lead: string;
   body: React.ReactNode;
   uses: string[];
+  demo?: string;
   thread: { people?: number; messages: Message[] };
 };
 
@@ -288,29 +291,34 @@ const day: Moment[] = [
   {
     a: foundertimes,
     when: "Morning",
-    lead: "The paper is waiting when you wake up.",
+    lead: "Know what to do first, before you open your laptop.",
     body: (
       <>
-        It opens with an advisor’s three ranked, sourced recommendations, challenged by independent
-        critics; then weather, one calendar rail, and up to three stories you asked it to cover. Research
-        runs in your own browser. It reports only: no purchases, bookings, logins or downloads.
+        Tell it what you’re trying to make true — close the round, sign ten design partners. Every morning
+        the paper opens with three ranked, sourced recommendations toward it, each challenged by independent
+        critics; then weather, your calendar and up to three stories you asked for. Correct it by text and it
+        remembers, in a wiki on your Mac. It reports only: no purchases, bookings, logins or downloads.
       </>
     ),
-    uses: ["Latch", "Your browser", "Calendar", "Mail", "Your printer"],
+    uses: ["Latch", "Your browser", "Calendar", "Mail", "Your printer", "Your wiki"],
+    demo: "/founder-times-demo/index.html",
     thread: { messages: foundertimesThread },
   },
   {
     a: meetly,
     when: "During the day",
-    lead: "Someone asks for coffee. It’s booked before you look.",
+    lead: "No more calendar ping-pong. It’s booked before you look.",
     body: (
       <>
-        Every five minutes Meetly reads your new iMessages. When someone wants to meet, it opens a group with
-        them, offers three free times inside your days and hours, holds them, books the one they pick, and
-        tells you afterwards. It speaks for you in the third person, never from your own Messages account.
+        Every five minutes Meetly reads your new iMessages — or you just ask it (“set up a Meet with Priya
+        next week”). It opens a group with the other person, offers three free times inside your days and
+        hours, asks how you’ll meet if it isn’t clear, books the one they pick and tells you afterwards. For
+        a Google Meet it posts the link in the group ten minutes before. It speaks for you in the third
+        person, never from your own Messages account.
       </>
     ),
-    uses: ["iMessage (via Latch)", "Google Calendar", "Contacts", "Plow group"],
+    uses: ["iMessage (via Latch)", "Google Calendar", "Google Meet", "Contacts", "Plow group"],
+    demo: "/meetly-demo/index.html",
     thread: { people: 2, messages: meetlyThread },
   },
   {
@@ -319,28 +327,33 @@ const day: Moment[] = [
     lead: "What people said about you today, in one text.",
     body: (
       <>
-        AHA watches what the public says about your company — Hacker News and Agent Index comments today —
-        and texts you a daily digest. Public posts are read as data, never as instructions.
+        AHA watches what the public says about your company on Hacker News and in Agent Index comments, plus
+        the exact pages you point it at — a competitor’s blog, a changelog, an X profile — and texts you one
+        daily digest. It never searches the open web on its own, and public posts are read as data, never as
+        instructions.
       </>
     ),
-    uses: ["Hacker News", "Agent Index"],
+    uses: ["Hacker News", "Agent Index", "Pages you choose (via Latch)"],
     thread: { messages: ahaThread },
   },
 ];
 
 function Day() {
   return (
-    <section id="day" className="py-20 sm:py-28">
+    <section id="day" className="pt-4 pb-20 sm:pb-28">
       <Container>
         <SectionHeader
-          eyebrow="A day with them"
+          eyebrow="One agent per job"
           title={
             <>
               Not a dashboard. A text thread <Mark>you already check</Mark>.
             </>
           }
         >
-          <p>The conversations below are illustrative examples — made-up names, not screenshots of real people.</p>
+          <p>
+            Each agent owns one part of your day and has its own phone line. The conversations below are
+            illustrative — made-up names, not screenshots of real people.
+          </p>
         </SectionHeader>
         <ol className="mt-16 flex flex-col gap-24">
           {day.map((m, i) => (
@@ -372,12 +385,19 @@ function Day() {
                     ))}
                   </ul>
                 </div>
-                <a
-                  href={m.a.index}
-                  className="group mt-6 inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
-                >
-                  {m.a.name} on the Agent Index <Arrow />
-                </a>
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  {m.demo && (
+                    <a href={m.demo} className={outlineButton}>
+                      Watch the demo<span className="sr-only">: {m.a.name}</span> <Arrow />
+                    </a>
+                  )}
+                  <a
+                    href={m.a.index}
+                    className="group inline-block text-sm font-medium underline decoration-line underline-offset-4 hover:decoration-foreground"
+                  >
+                    {m.a.name} on the Agent Index <Arrow />
+                  </a>
+                </div>
               </div>
               <div className={`mx-auto w-full max-w-md ${i % 2 ? "lg:order-1" : ""}`}>
                 <Thread title={m.a.name} image={m.a.image} people={m.thread.people} messages={m.thread.messages} />
@@ -415,7 +435,7 @@ const ecosystem: { label: string; when: string; note?: string; a: Agent; people?
     note: "Meetly reaches people in your Contacts.",
     messages: [
       { kind: "time", text: "Tue 18:05" },
-      { kind: "out", text: "reach out to Priya from Northwind and set up a call" },
+      { kind: "out", text: "reach out to Priya from Northwind and set up a Google Meet" },
     ],
   },
   {
@@ -427,10 +447,10 @@ const ecosystem: { label: string; when: string; note?: string; a: Agent; people?
       {
         kind: "in",
         from: "Meetly",
-        text: "Hi Priya — I’m Meetly, Sam’s scheduling assistant. Sam saw your post about Northwind and Acme. Sam is free Wed 30/9 at 10:00, Wed 30/9 at 15:00 or Thu 1/10 at 11:00. Which works?",
+        text: "Hi Priya — I’m Meetly, Jean’s scheduling assistant. Jean saw your post about Northwind and Acme. Jean is free Wed 30/9 at 10:00, Wed 30/9 at 15:00 or Thu 1/10 at 11:00. Which works?",
       },
       { kind: "in", from: "Priya", text: "wed 10 works!" },
-      { kind: "in", from: "Meetly", text: "Booked: Wed 30/9 at 10:00. Invite sent." },
+      { kind: "in", from: "Meetly", text: "Booked: Wed 30/9 at 10:00 on Google Meet. Invite sent." },
     ],
   },
   {
@@ -456,10 +476,10 @@ const ecosystemDelays = ecosystem.map((_, i) =>
 
 function Ecosystem() {
   return (
-    <section id="ecosystem" className="pt-4 pb-20 sm:pb-28">
+    <section id="ecosystem" className="py-20 sm:py-28">
       <Container>
         <SectionHeader
-          eyebrow="The ecosystem"
+          eyebrow="How they work together"
           title={
             <>
               A partner reaches out on X. By Wednesday, <Mark>you’re ready</Mark>.
@@ -467,9 +487,9 @@ function Ecosystem() {
           }
         >
           <p>
-            AHA spots the post in your daily digest. You ask Meetly to reach out, and it books the call. The next
-            morning, The Founder Times puts the meeting first on your advisor desk — each agent in its own lane,
-            with you deciding in between.
+            AHA spots the post in your evening digest. You ask Meetly to reach out, and it books the call. The
+            next morning, The Founder Times puts the call on your calendar and “prep for Northwind” first on its
+            list — each agent in its own lane, with you deciding in between. Names are illustrative.
           </p>
         </SectionHeader>
         <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -506,11 +526,11 @@ function Ecosystem() {
 const steps = [
   {
     title: "It listens",
-    body: "Where the signal already is: your chat, email, iMessage, groups and the public web.",
+    body: "Where things already happen: your texts, email, iMessage, calendar and the public pages you choose.",
   },
   {
-    title: "It decides what matters",
-    body: "Recommendations are challenged by critics before they reach you — not the first idea that came up.",
+    title: "It keeps only what matters",
+    body: "The paper’s picks survive independent critics, AHA reports only what’s new and about you, Meetly skips codes and marketing.",
   },
   {
     title: "It acts only inside your limits",
@@ -550,7 +570,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
   {
     title: "What it knows",
     items: [
-      "A labeled signal is never accepted as fact without critique.",
+      "What it picks up from your mail and messages is challenged, not taken as fact.",
       "A page that didn’t load is said, not invented.",
       "Network errors, or your Mac being offline, are reported — never hidden.",
     ],
@@ -559,6 +579,7 @@ const limits: { title: string; items: React.ReactNode[] }[] = [
     title: "What Meetly will do with your calendar",
     items: [
       "Offers only free time inside the days and hours you set.",
+      "Posts only the Meet link it created, read fresh from your calendar — never one someone else wrote.",
       <>
         Never shows calendar details — anything busy is just &ldquo;an existing commitment&rdquo;.
       </>,
@@ -603,6 +624,43 @@ function Limits() {
             </div>
           ))}
         </div>
+      </Container>
+    </section>
+  );
+}
+
+/* 6b. Setup: each agent sets itself up in a short chat */
+
+const setup: { a: Agent; asks: string }[] = [
+  { a: foundertimes, asks: "What time the paper lands, your printer, your goals, and the sections you want." },
+  { a: meetly, asks: "Your days and hours, the default meeting length, and which calendars count as busy." },
+  { a: aha, asks: "Your company and its aliases, your competitors, the sources to watch, and the digest hour." },
+];
+
+function Setup() {
+  return (
+    <section id="setup" className="pt-16 pb-12 sm:pt-20 sm:pb-14">
+      <Container>
+        <Eyebrow>Setup</Eyebrow>
+        <SectionTitle>
+          No dashboard to fill in. <Mark>Setup is a text conversation</Mark>.
+        </SectionTitle>
+        <p {...reveal(2)} className="mt-4 max-w-2xl text-muted">
+          Text the line and the agent asks what it needs, one question at a time — no form, no profile to
+          fill in.
+        </p>
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+          {setup.map(({ a, asks }, i) => (
+            <li key={a.id} {...reveal(i)} className="rounded-3xl border border-line bg-background p-6 sm:p-8">
+              <p className="flex items-center gap-3 text-lg font-semibold tracking-tight">
+                <Image src={a.image} alt="" width={32} height={32} className="size-8 rounded-full outline-1 -outline-offset-1 outline-black/10" />
+                {a.name}
+              </p>
+              <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted">Asks</p>
+              <p className="mt-1 leading-relaxed">{asks}</p>
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );
@@ -845,7 +903,7 @@ function Footer() {
         <Cross className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
         <div>
           <p className="font-display text-3xl leading-none">Maho</p>
-          <p className="mt-3 max-w-xs text-muted">Three agents on one base: Plow + OpenClaw.</p>
+          <p className="mt-3 max-w-xs text-muted">A small team of agents for founders, on Plow + OpenClaw.</p>
           <a href={links.agentIndex} className="mt-4 inline-block underline underline-offset-4">
             Agent Index
           </a>
