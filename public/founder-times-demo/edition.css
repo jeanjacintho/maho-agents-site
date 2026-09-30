@@ -1,0 +1,58 @@
+/* The edition, drawn like the agent's Letter page: black rules, a bold
+   serif masthead, the advisor's desk in a black band, stories in columns
+   and a calendar rail. Sized for the phone's PDF viewer. */
+.ft {
+  padding: 14px 12px 12px;
+  color: #111;
+  font: 7.4px/1.4 Georgia, "Times New Roman", serif;
+}
+.ft * { margin: 0; }
+.ft-mast {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
+  border-top: 1px solid #111; padding-top: 6px;
+}
+.ft-mast h2 {
+  font: 700 17px/1 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; text-align: center; white-space: nowrap;
+}
+.ft-wx { border: 1px solid #111; padding: 3px 5px; font: 700 10px/1 Georgia, serif; white-space: nowrap; }
+.ft-wx small { font-weight: 400; font-size: 7px; color: #666; }
+.ft-line {
+  display: flex; justify-content: space-between; margin-top: 6px; padding: 3px 0;
+  border-top: 1px solid #111; border-bottom: 3px double #111;
+  font: 500 5.6px/1.2 "Geist Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: #444;
+}
+.ft-desk { margin-top: 8px; border: 1px solid #111; }
+.ft-band {
+  background: #111; color: #fff; text-align: center; padding: 4px;
+  font: 700 10px/1 Georgia, serif; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.ft-rec { padding: 6px 7px; }
+.ft-rec + .ft-recs { border-top: 1px solid #111; }
+.ft-recs { display: grid; grid-template-columns: 1fr 1fr; }
+.ft-recs .ft-rec + .ft-rec { border-left: 1px solid #111; }
+.ft-n { font: 700 6px/1 Georgia, serif; }
+.ft h3 { font: 700 10px/1.15 Georgia, serif; margin: 2px 0 3px; }
+.ft-recs h3 { font-size: 8.4px; }
+.ft-first { margin-top: 3px; font-weight: 700; }
+.ft-ev { margin-top: 3px; color: #555; font-size: 6.4px; }
+.ft-body { display: grid; grid-template-columns: 1fr 76px; gap: 9px; margin-top: 9px; }
+.ft-kicker { font: 600 5.8px/1 "Geist Mono", monospace; letter-spacing: 0.1em; text-transform: uppercase; color: #555; }
+.ft-lead h4 { font: 700 15px/1.05 Georgia, serif; margin: 3px 0; letter-spacing: -0.01em; }
+.ft-dek { font-style: italic; color: #555; margin-bottom: 3px; }
+.ft-lead p + p { margin-top: 3px; }
+.ft-miss { margin-top: 4px; padding: 3px 5px; background: #f3f3f3; border-left: 2px solid #111; font-style: italic; }
+.ft-src { margin-top: 3px; color: #777; font-size: 5.6px; text-decoration: underline; }
+.ft-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 7px; padding-top: 6px; border-top: 2px solid #111; }
+.ft-pair h4 { font: 700 9px/1.1 Georgia, serif; margin: 3px 0; }
+.ft-pair > div + div { border-left: 1px solid #ccc; padding-left: 8px; }
+.ft-rail { border-left: 1px solid #111; padding-left: 7px; }
+.ft-rail .ft-band { font-size: 6.5px; padding: 3px; }
+.ft-rail ol { list-style: none; padding: 0; margin-top: 4px; }
+.ft-rail li { display: grid; grid-template-columns: 22px 1fr; gap: 3px; padding: 4px 0; border-bottom: 1px solid #ddd; font-size: 6.6px; }
+.ft-rail b { font-weight: 700; }
+.ft-mail { margin-top: 8px; }
+.ft-mail li { grid-template-columns: 1fr; }
+.ft-foot {
+  display: flex; justify-content: space-between; margin-top: 9px; padding-top: 3px; border-top: 3px double #111;
+  font: 500 5.4px/1 "Geist Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: #555;
+}

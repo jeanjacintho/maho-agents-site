@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meetly demo</title>
+<meta name="description" content="An illustrative, animated walkthrough of Meetly: setup over iMessage, then booking meetings with other people.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../demo-kit/phone.css">
+</head>
+<body>
+<main class="stage">
+  <section class="copy">
+    <p class="eyebrow"><img src="../agents/meetly.png" alt="" width="22" height="22"> Meetly · illustrative demo</p>
+    <h1>From the first text to a <span class="hl">booked meeting</span>.</h1>
+    <p class="lede">Set up in a short chat, then ask in plain words. Meetly opens a group, offers your free times, books the one they pick and tells you afterwards.</p>
+
+    <ol class="steps" id="steps"></ol>
+
+    <div class="controls">
+      <button type="button" id="play" class="btn primary" aria-label="Pause">
+        <svg class="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg>
+        <svg class="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7z"/></svg>
+        <span>Pause</span>
+      </button>
+      <button type="button" id="restart" class="btn">Restart</button>
+      <div class="speed" role="group" aria-label="Speed">
+        <button type="button" data-speed="1" aria-pressed="true">1×</button>
+        <button type="button" data-speed="2" aria-pressed="false">2×</button>
+        <button type="button" data-speed="4" aria-pressed="false">4×</button>
+      </div>
+    </div>
+
+    <div class="hood">
+      <p class="hood-title">Under the hood</p>
+      <ol id="log" aria-live="off"></ol>
+    </div>
+    <p class="fine">Made-up names and times. Not a screenshot of a real conversation.</p>
+  </section>
+
+  <div class="phone-fit" id="fit"></div>
+</main>
+<script src="demo.js"></script>
+<script src="../demo-kit/phone.js"></script>
+</body>
+</html>
