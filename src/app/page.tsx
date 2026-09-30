@@ -284,19 +284,19 @@ const meetlyThread: Message[] = [
   {
     kind: "in",
     from: "Meetly",
-    text: "Hi Ana — I’m Meetly, Jean’s scheduling assistant. Jean is free Tue 29/9 at 12:00, Wed 30/9 at 15:00 or Thu 1/10 at 10:00. Which works? And would you like to meet on Google Meet or in person?",
+    text: "Hi Ana — I’m Meetly, Jean’s scheduling assistant. Jean is free Tue 12:00, Wed 15:00 or Thu 10:00. Which works — Google Meet or in person?",
   },
   { kind: "in", from: "Ana", text: "wed at 3, in person! Café Floresta?" },
   {
     kind: "in",
     from: "Meetly",
-    text: "Booked: Wed 30/9 at 15:00, in person at Café Floresta. The other two times are released.",
+    text: "Booked: Wed 30/9 at 15:00 at Café Floresta. The other times are released.",
   },
   { kind: "note", text: "Later, in Jean’s DM" },
   {
     kind: "in",
     from: "Meetly",
-    text: "Booked coffee with Ana, Wed 30/9 at 15:00 at Café Floresta. She asked by iMessage; I offered three times inside your hours and she picked one.",
+    text: "Booked coffee with Ana, Wed 30/9 at 15:00. She picked one of three times inside your hours.",
   },
 ];
 
@@ -420,7 +420,7 @@ function Day() {
                   </a>
                 </div>
               </div>
-              <div className={`mx-auto w-full max-w-md ${i % 2 ? "lg:order-1" : ""}`}>
+              <div className={`mx-auto w-full max-w-[25rem] ${i % 2 ? "lg:order-1" : ""}`}>
                 <Thread title={m.a.name} image={m.a.image} people={m.thread.people} messages={m.thread.messages} />
               </div>
             </li>
